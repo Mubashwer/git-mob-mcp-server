@@ -2,10 +2,10 @@ import { gitMobClient } from "../clients/gitMobClient.js";
 import { server } from "../gitMobServer.js";
 
 server.tool(
-  "clearMobSessionCoauthors",
+  "clearMobSession",
   "Clears the active mob or pairing session.",
   {
-    title: "Clear Mob Session Coauthors",
+    title: "Clear Mob Session",
     readOnlyHint: false,
     destructiveHint: false,
     idempotentHint: true,
