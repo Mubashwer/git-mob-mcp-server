@@ -10,6 +10,7 @@ server.resource(
       "A list of all the team members that has been added to Git Mob. " +
       "The team members can then be used in pairing / mobbing sessions as coauthors." +
       "Each entry is formatted as: <key> <name> <email>",
+    mimeType: "text/plain",
   },
   async (uri) => {
     const result = await gitMobClient.listCoauthors();
