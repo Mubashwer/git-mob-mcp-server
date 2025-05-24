@@ -14,6 +14,32 @@ const server = new McpServer({
 
 const gitMobClient = new GitMobClient();
 
+// =====================
+// Team Members
+// =====================
+server.resource(
+  "teamMembers",
+  new ResourceTemplate("gitmob://team-members", { list: undefined }),
+  {
+    title: "Team Members",
+    description:
+      "A list of all the team members that has been added to Git Mob. " +
+      "The team members can then be used in pairing / mobbing sessions as coauthors." +
+      "Each entry is formatted as: <key> <name> <email>",
+    readOnlyHint: true,
+  },
+  async (uri) => {
+    const result = await gitMobClient.listCoauthors();
+    return {
+      contents: [
+        {
+          uri: uri.href,
+          text: result,
+        },
+      ],
+    };
+  },
+);
 server.tool(
   "addTeamMember",
   {
@@ -23,8 +49,8 @@ server.tool(
     title: "Add Team Member",
     description:
       "Adds a new team member using their key, name, and email. " +
-      "This member then be used in a pairing / mobbing session. " +
-      "The key is usually the first name.",
+      "This member then be used in a pairing / mobbing sessions as a cauthor. " +
+      "The first name is a good choice for the key.",
     readOnlyHint: false,
     destructiveHint: false,
     idempotentHint: false,
@@ -37,8 +63,22 @@ server.tool(
     };
   },
 );
-
-// Add a dynamic greeting resource
+server.tool(
+  "deleteTeamMember",
+  {
+    key: z.string(),
+    title: "Delete Team Member",
+    description: "Deletes a team member by their key.",
+    readOnlyHint: false,
+    destructiveHint: true,
+    idempotentHint: true,
+    openWorldHint: false,
+  },
+  async ({ key }) => {
+    const result = await gitMobClient.deleteCoauthor(key);
+    return { content: [{ type: "text", text: result }] };
+  },
+);
 server.resource(
   "greeting",
   new ResourceTemplate("greeting://{name}", { list: undefined }),
