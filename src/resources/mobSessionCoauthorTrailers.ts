@@ -9,7 +9,7 @@ server.resource(
   }),
   {
     description:
-      "Lists the git Co-authored-by trailers for the coauthors " +
+      "List of the git Co-authored-by trailers for the coauthors " +
       "currently included in the active mob or pairing session. " +
       "If Git Mob is setup, these Co-authored-by trailers will be automatically " +
       "added to the commit's message when making commits during the session.",

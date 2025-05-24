@@ -7,7 +7,7 @@ server.resource(
   new ResourceTemplate("gitmob://team-members", { list: undefined }),
   {
     description:
-      "A list of all the team members that has been added to Git Mob. " +
+      "List of all the team members that has been added to Git Mob. " +
       "The team members can then be used in pairing / mobbing sessions as coauthors." +
       "Each entry is formatted as: <key> <name> <email>",
     mimeType: "text/plain",
