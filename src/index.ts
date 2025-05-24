@@ -1,8 +1,8 @@
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
   McpServer,
   ResourceTemplate,
 } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 import { GitMobClient } from "./gitMobClient.js";
 
@@ -97,9 +97,9 @@ server.resource(
   async (uri) => {
     const result = await gitMobClient.listMobSessionCoauthors();
     return {
-    contents: [
-      {
-        uri: uri.href,
+      contents: [
+        {
+          uri: uri.href,
           text: result,
         },
       ],
@@ -127,8 +127,8 @@ server.resource(
         {
           uri: uri.href,
           text: result,
-      },
-    ],
+        },
+      ],
     };
   },
 );
@@ -168,8 +168,55 @@ server.tool(
   },
 );
 
+// =====================
+// System/Meta
+// =====================
+server.resource(
+  "gitMobVersion",
+  new ResourceTemplate("gitmob://version", { list: undefined }),
+  {
+    title: "Git Mob Version",
+    description: "The installed version of the Git Mob CLI.",
+    readOnlyHint: true,
+  },
+  async (uri) => {
+    const result = await gitMobClient.getVersion();
+    return {
+      contents: [
+        {
+          uri: uri.href,
+          text: result,
+        },
+      ],
+    };
+  },
+);
+server.resource(
+  "gitMobHelp",
+  new ResourceTemplate("gitmob://help", { list: undefined }),
+  {
+    title: "Git Mob Help",
+    description:
+      "Displays general help and usage information for the Git Mob CLI. " +
+      "You can optionally provide a command ('setup', 'coauthor', or 'help') " +
+      "to get detailed help for that specific command.",
+    readOnlyHint: true,
+  },
+  async (uri, { command }: { command?: "setup" | "coauthor" | "help" }) => {
+    const result = await gitMobClient.getHelp(command);
+    return {
+      contents: [
+        {
+          uri: uri.href,
+          text: result,
+        },
+      ],
+    };
+  },
+);
+
 
 // Start receiving messages on stdin and sending messages on stdout
 const transport = new StdioServerTransport();
 await server.connect(transport);
-console.log("Server started");
+console.log("Git Mob MCP Server started");
