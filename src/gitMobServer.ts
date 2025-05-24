@@ -20,12 +20,10 @@ server.resource(
   "teamMembers",
   new ResourceTemplate("gitmob://team-members", { list: undefined }),
   {
-    title: "Team Members",
     description:
       "A list of all the team members that has been added to Git Mob. " +
       "The team members can then be used in pairing / mobbing sessions as coauthors." +
       "Each entry is formatted as: <key> <name> <email>",
-    readOnlyHint: true,
   },
   async (uri) => {
     const result = await gitMobClient.listCoauthors();
@@ -41,15 +39,14 @@ server.resource(
 );
 server.tool(
   "addTeamMember",
+  "Adds a new team member using their key, name, and email. " +
+    "This member can then be used in a pairing or mobbing sessions as a cauthor. " +
+    "The first name is a good choice for the key.",
   {
     key: z.string(),
     name: z.string(),
     email: z.string(),
     title: "Add Team Member",
-    description:
-      "Adds a new team member using their key, name, and email. " +
-      "This member then be used in a pairing / mobbing sessions as a cauthor. " +
-      "The first name is a good choice for the key.",
     readOnlyHint: false,
     destructiveHint: false,
     idempotentHint: false,
@@ -64,10 +61,10 @@ server.tool(
 );
 server.tool(
   "deleteTeamMember",
+  "Deletes a team member by their key.",
   {
     key: z.string(),
     title: "Delete Team Member",
-    description: "Deletes a team member by their key.",
     readOnlyHint: false,
     destructiveHint: true,
     idempotentHint: true,
@@ -86,12 +83,10 @@ server.resource(
   "mobSessionCoauthors",
   new ResourceTemplate("gitmob://mob-session-coauthors", { list: undefined }),
   {
-    title: "Mob Session Coauthors",
     description:
       "Lists all coauthors currently included in the active mob or pairing session. " +
       "If Git Mob is setup, these coauthors will be automatically added as " +
       "Co-authored-by trailers to the commit's message when making commits during the session.",
-    readOnlyHint: true,
   },
   async (uri) => {
     const result = await gitMobClient.listMobSessionCoauthors();
@@ -111,13 +106,12 @@ server.resource(
     list: undefined,
   }),
   {
-    title: "Mob Session Coauthor Trailers",
     description:
       "Lists the git Co-authored-by trailers for the coauthors " +
       "currently included in the active mob or pairing session. " +
       "If Git Mob is setup, these Co-authored-by trailers will be automatically " +
       "added to the commit's message when making commits during the session.",
-    readOnlyHint: true,
+    mimeType: "text/plain",
   },
   async (uri) => {
     const result = await gitMobClient.listMobSessionCoauthorTrailers();
@@ -132,15 +126,14 @@ server.resource(
   },
 );
 server.tool(
-  "setMobSession",
+  "setMobSessionCoauthorsUsingTeamMembers",
+  "Sets the active pairing or mob session by specifying the " +
+    "keys of the team members to include as coauthors. " +
+    "If Git Mob is setup, these coauthors will be automatically added as " +
+    "Co-authored-by trailers to the commit's message when making commits during the session.",
   {
-    coauthorKeys: z.array(z.string()),
-    title: "Set Mob Session",
-    description:
-      "Sets the active pairing or mob session by specifying the " +
-      "keys of the team members to include as coauthors. " +
-      "If Git Mob is setup, these coauthors will be automatically added as " +
-      "Co-authored-by trailers to the commit's message when making commits during the session.",
+    coauthorKeys: z.array(z.string()).min(1),
+    title: "Set Mob or Pairing Session Coauthors using Team Members",
     readOnlyHint: false,
     destructiveHint: false,
     idempotentHint: true,
@@ -152,10 +145,10 @@ server.tool(
   },
 );
 server.tool(
-  "clearMobSession",
+  "clearMobSessionCoauthors",
+  "Clears the active mob or pairing session.",
   {
-    title: "Clear Mob Session",
-    description: "Clears the active mob or pairing session.",
+    title: "Clear Mob Session Coauthors",
     readOnlyHint: false,
     destructiveHint: false,
     idempotentHint: true,
@@ -174,9 +167,8 @@ server.resource(
   "gitMobVersion",
   new ResourceTemplate("gitmob://version", { list: undefined }),
   {
-    title: "Git Mob Version",
     description: "The installed version of the Git Mob CLI.",
-    readOnlyHint: true,
+    mimeType: "text/plain",
   },
   async (uri) => {
     const result = await gitMobClient.getVersion();
@@ -194,12 +186,11 @@ server.resource(
   "gitMobHelp",
   new ResourceTemplate("gitmob://help", { list: undefined }),
   {
-    title: "Git Mob Help",
     description:
       "Displays general help and usage information for the Git Mob CLI. " +
       "You can optionally provide a command ('setup', 'coauthor', or 'help') " +
       "to get detailed help for that specific command.",
-    readOnlyHint: true,
+    mimeType: "text/plain",
   },
   async (uri, { command }: { command?: "setup" | "coauthor" | "help" }) => {
     const result = await gitMobClient.getHelp(command);
