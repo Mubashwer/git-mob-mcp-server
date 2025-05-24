@@ -81,3 +81,5 @@ export class GitMobClient {
     }
   }
 }
+
+export const gitMobClient = new GitMobClient();
