@@ -44,7 +44,7 @@ export const registerGtMobResourceAsTool = (
   };
 
   server.registerTool(
-    name,
+    toolName,
     {
       description: String(metadata.description),
       inputSchema: {},
