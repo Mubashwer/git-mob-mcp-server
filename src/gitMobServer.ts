@@ -28,7 +28,7 @@ registerGitMobResource(server, resources.teamMembers);
 registerGitMobResource(server, resources.mobSessionCoauthors);
 registerGitMobResource(server, resources.mobSessionCoauthorTrailers);
 
-// Currently, Github Copilot does not support resources in MCP Server,
+// Currently, Github Copilot does not support dynamic resources in MCP Server,
 // so we register them as tools as well
 registerGtMobResourceAsTool(server, resources.gitMobVersion);
 registerGtMobResourceAsTool(server, resources.gitMobHelp);
@@ -36,6 +36,8 @@ registerGtMobResourceAsTool(server, resources.teamMembers);
 registerGtMobResourceAsTool(server, resources.mobSessionCoauthors);
 registerGtMobResourceAsTool(server, resources.mobSessionCoauthorTrailers);
 
+registerGitMobTool(server, tools.setupGitMobGlobally);
+registerGitMobTool(server, tools.setupGitMobLocally);
 registerGitMobTool(server, tools.addTeamMember);
 registerGitMobTool(server, tools.deleteTeamMember);
 registerGitMobTool(server, tools.setMobSessionCoauthors);
