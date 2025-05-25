@@ -1,4 +1,4 @@
-export { default as addTeamMember } from "./addTeamMember";
-export { default as deleteTeamMember } from "./deleteTeamMember";
-export { default as setMobSessionCoauthors } from "./setMobSessionCoauthors";
-export { default as clearMobSession } from "./clearMobSession";
+export { default as addTeamMember } from "./addTeamMember.js";
+export { default as deleteTeamMember } from "./deleteTeamMember.js";
+export { default as setMobSessionCoauthors } from "./setMobSessionCoauthors.js";
+export { default as clearMobSession } from "./clearMobSession.js";
