@@ -16,7 +16,8 @@ const metadata: ResourceMetadata = {
   description:
     "List of all the team members that has been added to Git Mob. " +
     "The team members can then be used in pairing / mobbing sessions as coauthors." +
-    "Each entry is formatted as: <key> <name> <email>",
+    "Each entry is formatted as: <key> <name> <email>." +
+    "Ask the user which team member(s) they want to pair or mob with.",
   mimeType: "text/plain",
 };
 const readCallback: ReadResourceTemplateCallback = async (uri) => {

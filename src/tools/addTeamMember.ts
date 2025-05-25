@@ -10,7 +10,7 @@ const description =
   "Adds a new team member using their key, name, and email. " +
   "This member can then be used in a pairing or mobbing sessions as a cauthor. " +
   "The first name is a good choice for the key." +
-  "Ask user if they want mob or pair with this team member.";
+  "Ask the user if they want mob or pair with this team member.";
 
 const inputSchema: ZodRawShape = {
   key: z.string(),
