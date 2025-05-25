@@ -18,7 +18,7 @@ export const registerGtMobResourceAsTool = (
 ) => {
   const { name, template, metadata, readCallback } = resource;
 
-  const toolName = "get" + name.charAt(0).toUpperCase() + name.slice(1);
+  const toolName = `get_${name}`;
 
   const annotations: ToolAnnotations = {
     title: toolName,

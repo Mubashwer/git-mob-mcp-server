@@ -3,7 +3,7 @@ import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 import type { ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { GitMobTool } from "../types/GitMobTool.js";
 
-const name = "clearMobSession";
+const name = "clear_mob_session";
 
 const description = "Clears the active mob or pairing session.";
 

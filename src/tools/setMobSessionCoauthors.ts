@@ -4,7 +4,7 @@ import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 import type { ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { GitMobTool } from "../types/GitMobTool.js";
 
-const name = "setMobSessionCoauthorsUsingTeamMembers";
+const name = "set_mob_session_coauthors";
 
 const description =
   "Sets the active pairing or mob session by specifying the " +

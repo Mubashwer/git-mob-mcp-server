@@ -3,7 +3,7 @@ import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 import type { ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { GitMobTool } from "../types/GitMobTool.js";
 
-const name = "setupGitMobLocally";
+const name = "setup_git_mob_locally";
 const description =
   "Sets up the Git Mob CLI for the current repository by installing a local " +
   "prepare-commit-msg git hook. This hook delegates to the global " +

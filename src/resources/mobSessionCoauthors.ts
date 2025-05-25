@@ -6,7 +6,7 @@ import {
 import { gitMobClient } from "../clients/gitMobClient.js";
 import type { GitMobResource } from "../types/GitMobResource.js";
 
-const name = "mobSessionCoauthors";
+const name = "mob_session_coauthors";
 
 const template = new ResourceTemplate("gitmob://mob-session-coauthors", {
   list: undefined,

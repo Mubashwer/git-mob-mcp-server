@@ -3,7 +3,7 @@ import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 import type { ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { GitMobTool } from "../types/GitMobTool.js";
 
-const name = "setupGitMobGlobally";
+const name = "setup_git_mob_globally";
 
 const description =
   "Configures the Git Mob CLI globally for all repositories on your system. " +

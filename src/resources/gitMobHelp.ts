@@ -6,7 +6,7 @@ import {
 import { gitMobClient } from "../clients/gitMobClient.js";
 import type { GitMobResource } from "../types/GitMobResource.js";
 
-const name = "gitMobHelp";
+const name = "git_mob_help";
 
 const template = new ResourceTemplate("gitmob://help", { list: undefined });
 

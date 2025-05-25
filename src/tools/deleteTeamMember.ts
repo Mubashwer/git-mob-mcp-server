@@ -4,7 +4,7 @@ import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 import type { ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { GitMobTool } from "../types/GitMobTool.js";
 
-const name = "deleteTeamMember";
+const name = "delete_team_member";
 
 const description =
   "Deletes a team member by their key. " +

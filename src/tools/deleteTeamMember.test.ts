@@ -5,7 +5,7 @@ import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 
 describe("[tools] deleteTeamMember", () => {
   it("should have correct name", () => {
-    expect(tool.name).toBe("deleteTeamMember");
+    expect(tool.name).toBe("delete_team_member");
   });
 
   it("should have correct description", () => {

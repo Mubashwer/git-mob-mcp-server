@@ -3,9 +3,9 @@ import tool from "./setMobSessionCoauthors.js";
 import { describe, it, expect } from "@jest/globals";
 import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 
-describe("[tools] setMobSessionCoauthorsUsingTeamMembers", () => {
+describe("[tools] setMobSessionCoauthors", () => {
   it("should have correct name", () => {
-    expect(tool.name).toBe("setMobSessionCoauthorsUsingTeamMembers");
+    expect(tool.name).toBe("set_mob_session_coauthors");
   });
 
   it("should have correct description", () => {

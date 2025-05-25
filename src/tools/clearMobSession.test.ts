@@ -4,7 +4,7 @@ import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 
 describe("[tools] clearMobSession", () => {
   it("should have correct name", () => {
-    expect(tool.name).toBe("clearMobSession");
+    expect(tool.name).toBe("clear_mob_session");
   });
 
   it("should have correct description", () => {

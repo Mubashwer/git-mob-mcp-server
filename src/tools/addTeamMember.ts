@@ -4,7 +4,7 @@ import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 import type { ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { GitMobTool } from "../types/GitMobTool.js";
 
-const name = "addTeamMember";
+const name = "add_team_member";
 
 const description =
   "Adds a new team member using their key, name, and email. " +

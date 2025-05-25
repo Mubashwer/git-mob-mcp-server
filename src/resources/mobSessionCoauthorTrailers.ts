@@ -6,7 +6,7 @@ import {
 import { gitMobClient } from "../clients/gitMobClient.js";
 import type { GitMobResource } from "../types/GitMobResource.js";
 
-const name = "mobSessionCoauthorTrailers";
+const name = "mob_session_coauthors";
 
 const template = new ResourceTemplate(
   "gitmob://mob-session-coauthor-trailers",
