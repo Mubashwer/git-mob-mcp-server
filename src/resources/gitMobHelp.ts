@@ -3,7 +3,7 @@ import {
   type ReadResourceTemplateCallback,
   type ResourceMetadata,
 } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { gitMobClient } from "../clients/gitMobClient.js";
+import { getHelp } from "../clients/gitMobClient.js";
 import type { GitMobResource } from "../types/GitMobResource.js";
 
 const name = "git_mob_help";
@@ -22,12 +22,13 @@ const readCallback: ReadResourceTemplateCallback = async (
   uri,
   { command }: { command?: "setup" | "coauthor" | "help" },
 ) => {
-  const result = await gitMobClient.getHelp(command);
+  const { ok, value } = await getHelp(command);
   return {
+    isError: !ok,
     contents: [
       {
         uri: uri.href,
-        text: result,
+        text: value,
       },
     ],
   };

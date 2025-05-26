@@ -4,7 +4,7 @@ import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 
 describe("[tools] setupGitMobGlobally", () => {
   it("should have correct name", () => {
-    expect(tool.name).toBe("setup_git_mob_globally"); 
+    expect(tool.name).toBe("setup_git_mob_globally");
   });
 
   it("should have correct description", () => {

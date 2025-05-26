@@ -1,5 +1,5 @@
 import { z, type ZodRawShape } from "zod";
-import { gitMobClient } from "../clients/gitMobClient.js";
+import { addCoauthor } from "../clients/gitMobClient.js";
 import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 import type { ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { GitMobTool } from "../types/GitMobTool.js";
@@ -31,10 +31,8 @@ const callback: ToolCallback<typeof inputSchema> = async ({
   name,
   email,
 }) => {
-  const result = await gitMobClient.addCoauthor(key, name, email);
-  return {
-    content: [{ type: "text", text: result }],
-  };
+  const { ok, value } = await addCoauthor(key, name, email);
+  return { isError: !ok, content: [{ type: "text", text: value }] };
 };
 
 const tool: GitMobTool<typeof inputSchema, Record<string, never>> = {

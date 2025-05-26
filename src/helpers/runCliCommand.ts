@@ -26,6 +26,6 @@ export async function runCliCommand(
       if (stdout) return { ok: false, value: stdout };
       if (message) return { ok: false, value: message };
     }
-    return { ok: false, value: String(error) || "Unknown error" };
+    return { ok: false, value: String(error) };
   }
 }

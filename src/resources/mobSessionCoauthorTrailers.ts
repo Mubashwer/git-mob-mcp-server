@@ -3,7 +3,7 @@ import {
   type ReadResourceTemplateCallback,
   type ResourceMetadata,
 } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { gitMobClient } from "../clients/gitMobClient.js";
+import { listMobSessionCoauthorTrailers } from "../clients/gitMobClient.js";
 import type { GitMobResource } from "../types/GitMobResource.js";
 
 const name = "mob_session_coauthors";
@@ -23,8 +23,19 @@ const metadata: ResourceMetadata = {
 };
 
 const readCallback: ReadResourceTemplateCallback = async (uri) => {
-  const results = await gitMobClient.listMobSessionCoauthorTrailers();
-  const lines = results.split("\n").filter((line) => line.trim() !== "");
+  const { ok, value } = await listMobSessionCoauthorTrailers();
+  if (!ok) {
+    return {
+      isError: true,
+      contents: [
+        {
+          uri: uri.href,
+          text: value,
+        },
+      ],
+    };
+  }
+  const lines = value.split("\n").filter((line) => line.trim() !== "");
   return {
     contents: lines.map((line) => ({
       uri: uri.href,

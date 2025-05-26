@@ -1,4 +1,4 @@
-import { runCliCommand, type CommandResult } from "../helpers/runCliCommand";
+import { runCliCommand, type CommandResult } from "../helpers/index.js";
 
 const GIT_MOB_CLI = "git-mob";
 
