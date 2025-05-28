@@ -9,7 +9,7 @@ import type {
 import type { GitMobTool } from "../types/GitMobTool.js";
 
 describe("[helpers] registerGitMobTool", () => {
-  it("registers given git mob tool with the given server", () => {
+  it("should register given git mob tool with the given server", () => {
     const mockServer = {
       registerTool: jest.fn(),
     } as Partial<McpServer> as McpServer;

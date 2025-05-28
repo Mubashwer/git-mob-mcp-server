@@ -11,7 +11,7 @@ import {
 } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 describe("[helpers] registerGitMobResource", () => {
-  it("registers given git mob resource with the given server", () => {
+  it("should register given git mob resource with the given server", () => {
     const mockServer = {
       resource: jest.fn(),
     } as Partial<McpServer> as McpServer;
