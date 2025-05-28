@@ -8,7 +8,7 @@ import type {
 } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { GitMobTool } from "../types/GitMobTool.js";
 
-describe("registerGitMobTool", () => {
+describe("[helpers] registerGitMobTool", () => {
   it("registers given git mob tool with the given server", () => {
     const mockServer = {
       registerTool: jest.fn(),
