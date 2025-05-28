@@ -1,8 +1,9 @@
-import { describe, it, expect, jest, beforeAll } from "@jest/globals";
+import { describe, it, expect, jest } from "@jest/globals";
 import * as helpers from "./helpers/index.js";
 import * as resources from "./resources/index.js";
 import * as tools from "./tools/index.js";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { createGitMobServer } from "./gitMobServerFactory.js";
 
 jest.mock("./helpers/index.js", () => ({
   registerGitMobTool: jest.fn(),
@@ -18,17 +19,13 @@ jest.mock("@modelcontextprotocol/sdk/server/mcp.js", () => {
 });
 jest.mock("../package.json", () => ({ version: "1.2.3" }), { virtual: true });
 
-describe("gitMobServer", () => {
-  let server: McpServer;
-  const mockServer = McpServer as jest.MockedClass<typeof McpServer>;
-
-  beforeAll(async () => {
-    const serverModule = await import("./gitMobServer.js");
-    server = serverModule.server;
-  });
+describe("gitMobServerFactory: createGitMobServer", () => {
+  const mockMCPServer = McpServer as jest.MockedClass<typeof McpServer>;
 
   it("should create an instance of McpServer for Git Mob", () => {
-    expect(mockServer).toHaveBeenCalledWith(
+    createGitMobServer();
+
+    expect(mockMCPServer).toHaveBeenCalledWith(
       { name: "Git Mob", version: "1.2.3" },
       {
         capabilities: {
@@ -41,6 +38,8 @@ describe("gitMobServer", () => {
 
   it("should register all resources", async () => {
     const { registerGitMobResource } = helpers;
+
+    const server = createGitMobServer();
 
     expect(registerGitMobResource).toHaveBeenCalledWith(
       server,
@@ -67,6 +66,8 @@ describe("gitMobServer", () => {
   it("should register all resources as tools", async () => {
     const { registerGtMobResourceAsTool } = helpers;
 
+    const server = createGitMobServer();
+
     expect(registerGtMobResourceAsTool).toHaveBeenCalledWith(
       server,
       resources.gitMobVersion,
@@ -91,6 +92,8 @@ describe("gitMobServer", () => {
 
   it("should register all tools", async () => {
     const { registerGitMobTool } = helpers;
+
+    const server = createGitMobServer();
 
     expect(registerGitMobTool).toHaveBeenCalledWith(
       server,
