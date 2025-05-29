@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
+          cache: npm
       - run: npm ci
       - run: npm run build
       - name: Upload build artifacts
@@ -31,12 +31,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
+          cache: npm
       - run: npm ci
       - run: npm test
 
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
     needs: [build, unit-test]
     if: ${{ github.ref == 'refs/heads/main' }}
     steps:
@@ -45,7 +49,7 @@ jobs:
         with:
           node-version: 22
           registry-url: "https://registry.npmjs.org/"
-          cache: 'npm'
+          cache: npm
       - run: npm ci
       - name: Download build artifacts
         uses: actions/download-artifact@v4
@@ -54,5 +58,5 @@ jobs:
           path: dist/
       - run: npx semantic-release
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
