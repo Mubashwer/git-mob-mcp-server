@@ -7,13 +7,12 @@ import {
   registerGitMobResource,
   registerGtMobResourceAsTool,
 } from "./helpers/index.js";
-import { version } from "../package.json";
 
 export const createGitMobServer = () => {
   const server = new McpServer(
     {
       name: "Git Mob",
-      version,
+      version: "1.0.0",
     },
     {
       capabilities: {

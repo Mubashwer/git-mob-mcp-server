@@ -17,7 +17,6 @@ jest.mock("@modelcontextprotocol/sdk/server/mcp.js", () => {
     McpServer: jest.fn().mockImplementation((meta, opts) => ({ meta, opts })),
   };
 });
-jest.mock("../package.json", () => ({ version: "1.2.3" }), { virtual: true });
 
 describe("gitMobServerFactory: createGitMobServer", () => {
   const mockMCPServer = McpServer as jest.MockedClass<typeof McpServer>;
@@ -26,7 +25,7 @@ describe("gitMobServerFactory: createGitMobServer", () => {
     createGitMobServer();
 
     expect(mockMCPServer).toHaveBeenCalledWith(
-      { name: "Git Mob", version: "1.2.3" },
+      { name: "Git Mob", version: "1.0.0" },
       {
         capabilities: {
           tools: {},
