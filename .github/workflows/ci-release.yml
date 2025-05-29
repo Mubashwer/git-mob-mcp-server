@@ -38,6 +38,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     permissions:
+      id-token: write # to enable use of OIDC for npm provenance
       contents: write # to be able to publish a GitHub release
       issues: write # to be able to comment on released issues
       pull-requests: write # to be able to comment on released pull requests
@@ -45,6 +46,8 @@ jobs:
     if: ${{ github.ref == 'refs/heads/main' }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -55,7 +58,9 @@ jobs:
         with:
           name: dist
           path: dist/
+      - run: npm audit signatures
       - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
