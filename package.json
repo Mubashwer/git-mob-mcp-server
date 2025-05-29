@@ -21,6 +21,11 @@
     "typecheck": "tsc --noEmit",
     "watch": "node --experimental-strip-types --watch src/index.ts"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "tag": "latest"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Mubashwer/git-mob-mcp-server.git"
