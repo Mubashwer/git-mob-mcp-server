@@ -72,6 +72,10 @@
     },
     "collectCoverageFrom": [
       "<rootDir>/src/**/*"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules",
+      "/dist"
     ]
   }
 }
