@@ -7,7 +7,7 @@ import {
 
 describe("[resources] mobSessionCoauthorTrailers", () => {
   it("should have correct name", () => {
-    expect(resource.name).toBe("mob_session_coauthors");
+    expect(resource.name).toBe("mob_session_coauthor_trailers");
   });
 
   it("should have correct template", () => {
