@@ -4,6 +4,12 @@ import {
   ResourceTemplate,
   type ResourceMetadata,
 } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { getHelp } from "../clients/gitMobClient.js";
+
+jest.mock("../clients/gitMobClient.js", () => ({
+  getHelp: jest.fn(),
+}));
+const mockGetHelp = getHelp as jest.Mock;
 
 describe("[resources] gitMobHelp", () => {
   it("should have correct name", () => {
@@ -36,5 +42,69 @@ describe("[resources] gitMobHelp", () => {
       mimeType: "text/plain",
     };
     expect(resource.metadata).toEqual(metadata);
+  });
+
+  describe("resource callback", () => {
+    it("should successfully get help and return success response", async () => {
+      const helpText =
+        "A CLI app which can help users automatically add co-author(s) to git commits for pair/mob programming.";
+      const uri = new URL("gitmob://help");
+      mockGetHelp.mockResolvedValueOnce({ ok: true, value: helpText });
+
+      const result = await resource.readCallback(uri, {});
+
+      expect(getHelp).toHaveBeenCalledWith(undefined);
+      expect(result).toEqual({
+        isError: false,
+        contents: [
+          {
+            uri: uri.href,
+            text: helpText,
+          },
+        ],
+      });
+    });
+
+    it("should successfully get help for given valid command and return success response", async () => {
+      const helpText =
+        "Create prepare-commit-msg githook which append Co-authored-by trailers to commit message";
+      const uri = new URL("gitmob://help?command=setup");
+      mockGetHelp.mockResolvedValueOnce({ ok: true, value: helpText });
+
+      const result = await resource.readCallback(uri, { command: "setup" });
+
+      expect(getHelp).toHaveBeenCalledWith("setup");
+      expect(result).toEqual({
+        isError: false,
+        contents: [
+          {
+            uri: uri.href,
+            text: helpText,
+          },
+        ],
+      });
+    });
+
+    it("should return error response when getting help fails", async () => {
+      const errorMessage = "error: unrecognized subcommand 'foo'";
+      const uri = new URL("gitmob://help?command=foo");
+      mockGetHelp.mockResolvedValueOnce({
+        ok: false,
+        value: errorMessage,
+      });
+
+      const result = await resource.readCallback(uri, { command: "foo" });
+
+      expect(getHelp).toHaveBeenCalledWith("foo");
+      expect(result).toEqual({
+        isError: true,
+        contents: [
+          {
+            uri: uri.href,
+            text: errorMessage,
+          },
+        ],
+      });
+    });
   });
 });
