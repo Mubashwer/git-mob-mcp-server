@@ -8,7 +8,12 @@ import type { GitMobResource } from "../types/GitMobResource.js";
 
 const name = "git_mob_help";
 
-const template = new ResourceTemplate("gitmob://help", { list: undefined });
+const template = new ResourceTemplate("gitmob://help{?command}", {
+  list: undefined,
+  complete: {
+    command: () => ["setup", "coauthor", "help"],
+  },
+});
 
 const metadata: ResourceMetadata = {
   description:

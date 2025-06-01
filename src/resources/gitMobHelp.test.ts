@@ -11,10 +11,20 @@ describe("[resources] gitMobHelp", () => {
   });
 
   it("should have correct template", () => {
-    const template: ResourceTemplate = new ResourceTemplate("gitmob://help", {
-      list: undefined,
-    });
-    expect(resource.template).toEqual(template);
+    const template: ResourceTemplate = new ResourceTemplate(
+      "gitmob://help{?command}",
+      {
+        list: undefined,
+        complete: {
+          command: () => ["setup", "coauthor", "help"],
+        },
+      },
+    );
+    expect(resource.template.uriTemplate).toEqual(template.uriTemplate);
+    expect(resource.template.listCallback).toEqual(template.listCallback);
+    expect(resource.template.completeCallback).toEqual(
+      template.completeCallback,
+    );
   });
 
   it("should have correct metadata", () => {
