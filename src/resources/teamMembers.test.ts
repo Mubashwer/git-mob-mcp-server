@@ -4,6 +4,12 @@ import {
   ResourceTemplate,
   type ResourceMetadata,
 } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { listCoauthors } from "../clients/gitMobClient.js";
+
+jest.mock("../clients/gitMobClient.js", () => ({
+  listCoauthors: jest.fn(),
+}));
+const mockListCoauthors = listCoauthors as jest.Mock;
 
 describe("[resources] teamMembers", () => {
   it("should have correct name", () => {
@@ -28,5 +34,68 @@ describe("[resources] teamMembers", () => {
       mimeType: "text/plain",
     };
     expect(resource.metadata).toEqual(metadata);
+  });
+
+  describe("resource callback", () => {
+    it("should successfully list team members and return success response", async () => {
+      const teamMembersText =
+        "leo Leo Messi <leo@example.com>\neric Eric Abidal <eric@example.com>";
+
+      const uri = new URL("gitmob://team-members");
+      mockListCoauthors.mockResolvedValueOnce({
+        ok: true,
+        value: teamMembersText,
+      });
+
+      const result = await resource.readCallback(uri);
+
+      expect(listCoauthors).toHaveBeenCalledWith();
+      expect(result).toEqual({
+        contents: [
+          {
+            uri: uri.href,
+            text: "leo Leo Messi <leo@example.com>",
+          },
+          {
+            uri: uri.href,
+            text: "eric Eric Abidal <eric@example.com>",
+          },
+        ],
+      });
+    });
+
+    it("should handle empty team members list", async () => {
+      const uri = new URL("gitmob://team-members");
+      mockListCoauthors.mockResolvedValueOnce({ ok: true, value: "" });
+
+      const result = await resource.readCallback(uri);
+
+      expect(listCoauthors).toHaveBeenCalledWith();
+      expect(result).toEqual({
+        contents: [],
+      });
+    });
+
+    it("should return error response when listing team members fails", async () => {
+      const errorMessage = "git: 'mob' is not a git command. See 'git --help'";
+      const uri = new URL("gitmob://team-members");
+      mockListCoauthors.mockResolvedValueOnce({
+        ok: false,
+        value: errorMessage,
+      });
+
+      const result = await resource.readCallback(uri);
+
+      expect(listCoauthors).toHaveBeenCalledWith();
+      expect(result).toEqual({
+        isError: true,
+        contents: [
+          {
+            uri: uri.href,
+            text: errorMessage,
+          },
+        ],
+      });
+    });
   });
 });
