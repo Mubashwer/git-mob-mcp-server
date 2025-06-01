@@ -1,4 +1,4 @@
-import resource from "./gitMobVersion";
+import resource from "./gitMobVersion.js";
 import { describe, it, expect } from "@jest/globals";
 import {
   ResourceTemplate,

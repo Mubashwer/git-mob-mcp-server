@@ -1,5 +1,5 @@
 import { describe, it, expect, jest } from "@jest/globals";
-import { registerGtMobResourceAsTool } from "./registerGitMobResourceAsTool";
+import { registerGtMobResourceAsTool } from "./registerGitMobResourceAsTool.js";
 import type { GitMobResource } from "../types/GitMobResource.js";
 import {
   ResourceTemplate,

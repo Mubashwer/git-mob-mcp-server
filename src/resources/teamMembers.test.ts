@@ -1,4 +1,4 @@
-import resource from "./teamMembers";
+import resource from "./teamMembers.js";
 import { describe, it, expect } from "@jest/globals";
 import {
   ResourceTemplate,

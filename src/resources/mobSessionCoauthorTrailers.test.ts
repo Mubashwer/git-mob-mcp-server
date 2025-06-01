@@ -1,4 +1,4 @@
-import resource from "./mobSessionCoauthorTrailers";
+import resource from "./mobSessionCoauthorTrailers.js";
 import { describe, it, expect } from "@jest/globals";
 import {
   ResourceTemplate,

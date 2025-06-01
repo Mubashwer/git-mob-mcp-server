@@ -1,5 +1,5 @@
 import { describe, test, expect, beforeEach, jest } from "@jest/globals";
-import * as gitMobClient from "./gitMobClient";
+import * as gitMobClient from "./gitMobClient.js";
 import { runCliCommand } from "../helpers/index.js";
 
 jest.mock("../helpers/index.js", () => ({

@@ -1,5 +1,5 @@
 import { describe, it, expect, jest } from "@jest/globals";
-import { registerGitMobTool } from "./registerGitMobTool";
+import { registerGitMobTool } from "./registerGitMobTool.js";
 import { z, type ZodRawShape } from "zod";
 import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 import type {

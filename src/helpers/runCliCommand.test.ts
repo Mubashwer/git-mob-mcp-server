@@ -1,5 +1,5 @@
 import { describe, it, expect } from "@jest/globals";
-import { runCliCommand } from "./runCliCommand";
+import { runCliCommand } from "./runCliCommand.js";
 
 describe("[helpers] runCliCommand", () => {
   it("should return ok and stdout for a successful command", async () => {
