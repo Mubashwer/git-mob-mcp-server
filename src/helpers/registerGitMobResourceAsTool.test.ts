@@ -8,11 +8,11 @@ import {
   type McpServer,
   type ToolCallback,
 } from "@modelcontextprotocol/sdk/server/mcp.js";
-import type { RequestHandlerExtra } from "@modelcontextprotocol/sdk/shared/protocol";
+import type { RequestHandlerExtra } from "@modelcontextprotocol/sdk/shared/protocol.js";
 import type {
   ServerRequest,
   ServerNotification,
-} from "@modelcontextprotocol/sdk/types";
+} from "@modelcontextprotocol/sdk/types.js";
 
 describe("[helpers] registerGtMobResourceAsTool", () => {
   const RESOURCE_CALLBACK_CONTENT = "hello world";
