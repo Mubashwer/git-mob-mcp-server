@@ -33,7 +33,8 @@ Built using [@modelcontextprotocol/sdk](https://github.com/modelcontextprotocol/
 - `setup_git_mob_globally`: Sets up git-mob globally for the user.
 - `setup_git_mob_locally`: Sets up git-mob locally for the current repository.
 
-Because resources may not be fully supported in GitHub Copilot Agent mode yet, the some of them are also available as tools:
+Because resources may not be fully supported in GitHub Copilot Agent mode yet, all resources also available as tools:
+- `git_mob_help`: Displays general help and usage information for the Git Mob CLI.
 - `get_git_mob_version`: The installed version of the Git Mob CLI.
 - `get_team_members`: List of all the team members that have been added to Git Mob.
 - `get_mob_session_coauthors`: List of all coauthors currently included in the active mob or pairing session.
@@ -48,7 +49,7 @@ Add this to your `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "gitMob": {
+    "git-mob": {
       "command": "npx",
       "args": [
         "-y",
@@ -73,7 +74,7 @@ Optionally, you can add it to a file called `.vscode/mcp.json` in your workspace
 {
   "mcp": {
     "servers": {
-      "gitMob": {
+      "git-mob": {
         "command": "npx",
         "args": [
           "-y",
