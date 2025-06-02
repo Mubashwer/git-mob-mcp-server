@@ -15,8 +15,10 @@
     "eslint": "eslint .",
     "eslint:fix": "eslint --fix",
     "format": "prettier --write \"**/*.{js,mjs,cjs,ts}\"",
+    "inspect": "npx @modelcontextprotocol/inspector node dist/index.js",
     "lint": "npm-run-all typecheck eslint",
     "lint:fix": "npm-run-all format typecheck eslint:fix",
+    "start": "npm-run-all --parallel watch inspect",
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "watch": "tsc --watch"
