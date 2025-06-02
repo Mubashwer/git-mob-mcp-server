@@ -44,6 +44,7 @@ export const createGitMobServer = () => {
   registerGitMobTool(server, tools.deleteTeamMember);
   registerGitMobTool(server, tools.setMobSessionCoauthors);
   registerGitMobTool(server, tools.clearMobSession);
+  registerGitMobTool(server, tools.getGitMobHelp);
 
   return server;
 };

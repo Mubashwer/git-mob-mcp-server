@@ -123,5 +123,9 @@ describe("gitMobServerFactory: createGitMobServer", () => {
       server,
       tools.clearMobSession,
     );
+    expect(registerGitMobTool).toHaveBeenCalledWith(
+      server,
+      tools.getGitMobHelp,
+    );
   });
 });
