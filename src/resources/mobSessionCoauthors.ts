@@ -1,6 +1,5 @@
 import {
-  ResourceTemplate,
-  type ReadResourceTemplateCallback,
+  type ReadResourceCallback,
   type ResourceMetadata,
 } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { listMobSessionCoauthors } from "../clients/gitMobClient.js";
@@ -8,9 +7,7 @@ import type { GitMobResource } from "../types/GitMobResource.js";
 
 const name = "mob_session_coauthors";
 
-const template = new ResourceTemplate("gitmob://mob-session-coauthors", {
-  list: undefined,
-});
+const uri = "gitmob://mob-session-coauthors";
 
 const metadata: ResourceMetadata = {
   description:
@@ -20,7 +17,7 @@ const metadata: ResourceMetadata = {
   mimeType: "text/plain",
 };
 
-const readCallback: ReadResourceTemplateCallback = async (uri) => {
+const readCallback: ReadResourceCallback = async (uri) => {
   const { ok, value } = await listMobSessionCoauthors();
   if (!ok) {
     return {
@@ -44,7 +41,7 @@ const readCallback: ReadResourceTemplateCallback = async (uri) => {
 
 const resource: GitMobResource = {
   name,
-  template,
+  uri,
   metadata,
   readCallback,
 };

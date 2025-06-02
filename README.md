@@ -33,8 +33,7 @@ Built using [@modelcontextprotocol/sdk](https://github.com/modelcontextprotocol/
 - `setup_git_mob_globally`: Sets up git-mob globally for the user.
 - `setup_git_mob_locally`: Sets up git-mob locally for the current repository.
 
-Because dynamic resources are not yet supported in GitHub Copilot, the resources are also available as tools:
-- `get_git_mob_help`: Displays general help and usage information for the Git Mob CLI.
+Because resources may not be fully supported in GitHub Copilot Agent mode yet, the some of them are also available as tools:
 - `get_git_mob_version`: The installed version of the Git Mob CLI.
 - `get_team_members`: List of all the team members that have been added to Git Mob.
 - `get_mob_session_coauthors`: List of all coauthors currently included in the active mob or pairing session.

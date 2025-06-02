@@ -2,10 +2,12 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 import * as tools from "./tools/index.js";
 import * as resources from "./resources/index.js";
+import * as resourceTemplates from "./resourceTemplates/index.js";
 import {
   registerGitMobTool,
   registerGitMobResource,
   registerGtMobResourceAsTool,
+  registerGitMobResourceTemplate,
 } from "./helpers/index.js";
 
 export const createGitMobServer = () => {
@@ -22,8 +24,9 @@ export const createGitMobServer = () => {
     },
   );
 
+  registerGitMobResourceTemplate(server, resourceTemplates.gitMobHelp);
+
   registerGitMobResource(server, resources.gitMobVersion);
-  registerGitMobResource(server, resources.gitMobHelp);
   registerGitMobResource(server, resources.teamMembers);
   registerGitMobResource(server, resources.mobSessionCoauthors);
   registerGitMobResource(server, resources.mobSessionCoauthorTrailers);
@@ -31,7 +34,6 @@ export const createGitMobServer = () => {
   // Currently, Github Copilot does not support dynamic resources in MCP Server,
   // so we register them as tools as well
   registerGtMobResourceAsTool(server, resources.gitMobVersion);
-  registerGtMobResourceAsTool(server, resources.gitMobHelp);
   registerGtMobResourceAsTool(server, resources.teamMembers);
   registerGtMobResourceAsTool(server, resources.mobSessionCoauthors);
   registerGtMobResourceAsTool(server, resources.mobSessionCoauthorTrailers);

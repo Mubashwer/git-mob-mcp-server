@@ -4,16 +4,20 @@ import {
   type ResourceMetadata,
 } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { getHelp } from "../clients/gitMobClient.js";
-import type { GitMobResource } from "../types/GitMobResource.js";
+import { UriTemplate } from "@modelcontextprotocol/sdk/shared/uriTemplate.js";
+import type { GitMobResourceTemplate } from "../types/GitMobResourceTemplate.js";
 
 const name = "git_mob_help";
 
-const template = new ResourceTemplate("gitmob://help{?command}", {
-  list: undefined,
-  complete: {
-    command: () => ["setup", "coauthor", "help"],
+const template = new ResourceTemplate(
+  new UriTemplate("gitmob://help{?command}"),
+  {
+    list: undefined,
+    complete: {
+      command: () => ["setup", "coauthor", "help"],
+    },
   },
-});
+);
 
 const metadata: ResourceMetadata = {
   description:
@@ -39,7 +43,7 @@ const readCallback: ReadResourceTemplateCallback = async (
   };
 };
 
-const resource: GitMobResource = {
+const resource: GitMobResourceTemplate = {
   name,
   template,
   metadata,

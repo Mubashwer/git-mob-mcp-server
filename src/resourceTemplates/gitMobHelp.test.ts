@@ -9,7 +9,7 @@ jest.mock("../clients/gitMobClient.js", () => ({
 }));
 const mockGetHelp = getHelp as jest.Mock;
 
-describe("[resources] gitMobHelp", () => {
+describe("[resourceTemplates] gitMobHelp", () => {
   it("should have correct name", () => {
     expect(resource.name).toBe("git_mob_help");
   });

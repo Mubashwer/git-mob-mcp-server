@@ -1,9 +1,6 @@
 import resource from "./mobSessionCoauthorTrailers.js";
 import { describe, it, expect } from "@jest/globals";
-import {
-  ResourceTemplate,
-  type ResourceMetadata,
-} from "@modelcontextprotocol/sdk/server/mcp.js";
+import { type ResourceMetadata } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { listMobSessionCoauthorTrailers } from "../clients/gitMobClient.js";
 
 jest.mock("../clients/gitMobClient.js", () => ({
@@ -17,12 +14,8 @@ describe("[resources] mobSessionCoauthorTrailers", () => {
     expect(resource.name).toBe("mob_session_coauthor_trailers");
   });
 
-  it("should have correct template", () => {
-    const template: ResourceTemplate = new ResourceTemplate(
-      "gitmob://mob-session-coauthor-trailers",
-      { list: undefined },
-    );
-    expect(resource.template).toEqual(template);
+  it("should have correct uri", () => {
+    expect(resource.uri).toEqual("gitmob://mob-session-coauthor-trailers");
   });
 
   it("should have correct metadata", () => {

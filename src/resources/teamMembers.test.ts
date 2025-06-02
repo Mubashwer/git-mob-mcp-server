@@ -1,9 +1,6 @@
 import resource from "./teamMembers.js";
 import { describe, it, expect } from "@jest/globals";
-import {
-  ResourceTemplate,
-  type ResourceMetadata,
-} from "@modelcontextprotocol/sdk/server/mcp.js";
+import { type ResourceMetadata } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { listCoauthors } from "../clients/gitMobClient.js";
 
 jest.mock("../clients/gitMobClient.js", () => ({
@@ -16,12 +13,8 @@ describe("[resources] teamMembers", () => {
     expect(resource.name).toBe("team_members");
   });
 
-  it("should have correct template", () => {
-    const template: ResourceTemplate = new ResourceTemplate(
-      "gitmob://team-members",
-      { list: undefined },
-    );
-    expect(resource.template).toEqual(template);
+  it("should have correct uri", () => {
+    expect(resource.uri).toEqual("gitmob://team-members");
   });
 
   it("should have correct metadata", () => {

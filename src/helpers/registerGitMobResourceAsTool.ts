@@ -17,7 +17,7 @@ export const registerGtMobResourceAsTool = (
   server: McpServer,
   resource: GitMobResource,
 ) => {
-  const { name, template, metadata, readCallback } = resource;
+  const { name, uri, metadata, readCallback } = resource;
 
   const toolName = `get_${name}`;
 
@@ -30,14 +30,10 @@ export const registerGtMobResourceAsTool = (
   };
 
   const toolCallback: ToolCallback<Record<string, never>> = async (
-    args: Variables,
+    _args: Variables,
     extra: RequestHandlerExtra<ServerRequest, ServerNotification>,
   ) => {
-    const resourceResult = await readCallback(
-      new URL(template.uriTemplate),
-      args,
-      extra,
-    );
+    const resourceResult = await readCallback(new URL(uri), extra);
     const toolResult: CallToolResult = {
       content: resourceResult.contents
         .filter((content) => typeof content.text === "string")

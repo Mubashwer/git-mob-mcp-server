@@ -3,12 +3,9 @@ import { registerGitMobResource } from "./registerGitMobResource.js";
 import type { GitMobResource } from "../types/GitMobResource.js";
 import type {
   McpServer,
-  ReadResourceTemplateCallback,
+  ReadResourceCallback,
 } from "@modelcontextprotocol/sdk/server/mcp.js";
-import {
-  ResourceTemplate,
-  type ResourceMetadata,
-} from "@modelcontextprotocol/sdk/server/mcp.js";
+import { type ResourceMetadata } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 describe("[helpers] registerGitMobResource", () => {
   it("should register given git mob resource with the given server", () => {
@@ -17,14 +14,12 @@ describe("[helpers] registerGitMobResource", () => {
     } as Partial<McpServer> as McpServer;
 
     const name = "test_resource";
-    const template = new ResourceTemplate("gitmob://test-resource", {
-      list: undefined,
-    });
+    const uri = "gitmob://test-resource";
     const metadata: ResourceMetadata = {
       description: "This is a test resource for testing purposes.",
       mimeType: "text/plain",
     };
-    const readCallback: ReadResourceTemplateCallback = async (uri) => {
+    const readCallback: ReadResourceCallback = async (uri) => {
       return {
         contents: [
           {
@@ -36,7 +31,7 @@ describe("[helpers] registerGitMobResource", () => {
     };
     const testResource: GitMobResource = {
       name,
-      template,
+      uri,
       metadata,
       readCallback,
     };
@@ -45,7 +40,7 @@ describe("[helpers] registerGitMobResource", () => {
 
     expect(mockServer.resource).toHaveBeenCalledWith(
       testResource.name,
-      testResource.template,
+      testResource.uri,
       testResource.metadata,
       testResource.readCallback,
     );

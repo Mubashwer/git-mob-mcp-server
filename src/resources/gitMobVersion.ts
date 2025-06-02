@@ -1,6 +1,5 @@
 import {
-  ResourceTemplate,
-  type ReadResourceTemplateCallback,
+  type ReadResourceCallback,
   type ResourceMetadata,
 } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { getVersion } from "../clients/gitMobClient.js";
@@ -8,14 +7,14 @@ import type { GitMobResource } from "../types/GitMobResource.js";
 
 const name = "git_mob_version";
 
-const template = new ResourceTemplate("gitmob://version", { list: undefined });
+const uri = "gitmob://version";
 
 const metadata: ResourceMetadata = {
   description: "The installed version of the Git Mob CLI.",
   mimeType: "text/plain",
 };
 
-const readCallback: ReadResourceTemplateCallback = async (uri) => {
+const readCallback: ReadResourceCallback = async (uri) => {
   const { ok, value } = await getVersion();
   return {
     isError: !ok,
@@ -30,7 +29,7 @@ const readCallback: ReadResourceTemplateCallback = async (uri) => {
 
 const resource: GitMobResource = {
   name,
-  template,
+  uri,
   metadata,
   readCallback,
 };

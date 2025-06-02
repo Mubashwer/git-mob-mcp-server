@@ -2,7 +2,6 @@ import { describe, it, expect, jest } from "@jest/globals";
 import { registerGtMobResourceAsTool } from "./registerGitMobResourceAsTool.js";
 import type { GitMobResource } from "../types/GitMobResource.js";
 import {
-  ResourceTemplate,
   type ResourceMetadata,
   type ReadResourceTemplateCallback,
   type McpServer,
@@ -21,9 +20,7 @@ describe("[helpers] registerGtMobResourceAsTool", () => {
     } as Partial<McpServer> as McpServer;
 
     const name = "test_resource";
-    const template = new ResourceTemplate("gitmob://test-resource", {
-      list: undefined,
-    });
+    const uri = "gitmob://test-resource";
     const metadata: ResourceMetadata = {
       description: "This is a test resource for testing purposes.",
       mimeType: "text/plain",
@@ -38,7 +35,7 @@ describe("[helpers] registerGtMobResourceAsTool", () => {
     };
     const testResource: GitMobResource = {
       name,
-      template,
+      uri,
       metadata,
       readCallback,
     };

@@ -5,6 +5,6 @@ export const registerGitMobResource = (
   server: McpServer,
   resource: GitMobResource,
 ) => {
-  const { name, template, metadata, readCallback } = resource;
-  server.resource(name, template, metadata, readCallback);
+  const { name, uri, metadata, readCallback } = resource;
+  server.resource(name, uri, metadata, readCallback);
 };

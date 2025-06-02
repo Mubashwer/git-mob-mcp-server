@@ -1,12 +1,11 @@
 import type {
   ResourceMetadata,
-  ResourceTemplate,
-  ReadResourceTemplateCallback,
+  ReadResourceCallback,
 } from "@modelcontextprotocol/sdk/server/mcp";
 
 export interface GitMobResource {
   name: string;
-  template: ResourceTemplate;
+  uri: string;
   metadata: ResourceMetadata;
-  readCallback: ReadResourceTemplateCallback;
+  readCallback: ReadResourceCallback;
 }

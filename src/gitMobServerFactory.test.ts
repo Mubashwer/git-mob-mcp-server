@@ -1,6 +1,7 @@
 import { describe, it, expect, jest } from "@jest/globals";
 import * as helpers from "./helpers/index.js";
 import * as resources from "./resources/index.js";
+import * as resourceTemplates from "./resourceTemplates/index.js";
 import * as tools from "./tools/index.js";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { createGitMobServer } from "./gitMobServerFactory.js";
@@ -8,6 +9,7 @@ import { createGitMobServer } from "./gitMobServerFactory.js";
 jest.mock("./helpers/index.js", () => ({
   registerGitMobTool: jest.fn(),
   registerGitMobResource: jest.fn(),
+  registerGitMobResourceTemplate: jest.fn(),
   registerGtMobResourceAsTool: jest.fn(),
 }));
 jest.mock("@modelcontextprotocol/sdk/server/mcp.js", () => {
@@ -35,6 +37,17 @@ describe("gitMobServerFactory: createGitMobServer", () => {
     );
   });
 
+  it("should register all resource templates", async () => {
+    const { registerGitMobResourceTemplate } = helpers;
+
+    const server = createGitMobServer();
+
+    expect(registerGitMobResourceTemplate).toHaveBeenCalledWith(
+      server,
+      resourceTemplates.gitMobHelp,
+    );
+  });
+
   it("should register all resources", async () => {
     const { registerGitMobResource } = helpers;
 
@@ -43,10 +56,6 @@ describe("gitMobServerFactory: createGitMobServer", () => {
     expect(registerGitMobResource).toHaveBeenCalledWith(
       server,
       resources.gitMobVersion,
-    );
-    expect(registerGitMobResource).toHaveBeenCalledWith(
-      server,
-      resources.gitMobHelp,
     );
     expect(registerGitMobResource).toHaveBeenCalledWith(
       server,
@@ -70,10 +79,6 @@ describe("gitMobServerFactory: createGitMobServer", () => {
     expect(registerGtMobResourceAsTool).toHaveBeenCalledWith(
       server,
       resources.gitMobVersion,
-    );
-    expect(registerGtMobResourceAsTool).toHaveBeenCalledWith(
-      server,
-      resources.gitMobHelp,
     );
     expect(registerGtMobResourceAsTool).toHaveBeenCalledWith(
       server,
