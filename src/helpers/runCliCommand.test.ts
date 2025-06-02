@@ -1,4 +1,4 @@
-import { describe, it, expect } from "@jest/globals";
+import { describe, it, expect, jest } from "@jest/globals";
 import { runCliCommand } from "./runCliCommand.js";
 
 describe("[helpers] runCliCommand", () => {
@@ -39,5 +39,38 @@ describe("[helpers] runCliCommand", () => {
     const result = await runCliCommand("nonexistent-cmd-xyz", []);
     expect(result.ok).toBe(false);
     expect(result.value.trim()).toBe("spawn nonexistent-cmd-xyz ENOENT");
+  });
+
+  it("should return ok and empty string for a command with no output", async () => {
+    const result = await runCliCommand("node", ["-e", "/* no output */"]);
+    expect(result.ok).toBe(true);
+    expect(result.value).toBe("");
+  });
+
+  it("should handle non-object errors", async () => {
+    const mockExecFile = jest.fn();
+    jest.doMock("child_process", () => ({
+      execFile: mockExecFile,
+    }));
+    // Reset modules to apply the mock
+    jest.resetModules();
+
+    mockExecFile.mockImplementationOnce((_program, _args, callback) => {
+      // @ts-expect-error - Intentionally passing a string instead of Error object
+      callback("string error");
+      return {} as unknown;
+    });
+
+    // Re-import the module to include the mock
+    const { runCliCommand: runCliCommandWithMockedExec } = await import(
+      "./runCliCommand.js"
+    );
+
+    const result = await runCliCommandWithMockedExec("test", []);
+    expect(result.ok).toBe(false);
+    expect(result.value).toBe("string error");
+
+    // Reset modules to remove the mock
+    jest.resetModules();
   });
 });
