@@ -17,10 +17,9 @@
     "format": "prettier --write \"**/*.{js,mjs,cjs,ts}\"",
     "lint": "npm-run-all typecheck eslint",
     "lint:fix": "npm-run-all format typecheck eslint:fix",
-    "start": "node --experimental-strip-types src/index.ts",
     "test": "jest",
     "typecheck": "tsc --noEmit",
-    "watch": "node --experimental-strip-types --watch src/index.ts"
+    "watch": "tsc --watch"
   },
   "publishConfig": {
     "access": "public",
