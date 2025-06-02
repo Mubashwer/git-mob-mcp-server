@@ -2,6 +2,7 @@ import type {
   ServerNotification,
   ServerRequest,
   ToolAnnotations,
+  CallToolResult,
 } from "@modelcontextprotocol/sdk/types";
 import type { GitMobResource } from "../types/GitMobResource";
 import type {
@@ -32,15 +33,21 @@ export const registerGtMobResourceAsTool = (
     args: Variables,
     extra: RequestHandlerExtra<ServerRequest, ServerNotification>,
   ) => {
-    const result = await readCallback(
+    const resourceResult = await readCallback(
       new URL(template.uriTemplate),
       args,
       extra,
     );
-    const text = result.contents
-      .map((content) => (typeof content.text === "string" ? content.text : ""))
-      .join("\n");
-    return { content: [{ type: "text", text }] };
+    const toolResult: CallToolResult = {
+      content: resourceResult.contents
+        .filter((content) => typeof content.text === "string")
+        .map((content) => ({
+          type: "text",
+          text: content.text as string,
+        })),
+    };
+
+    return toolResult;
   };
 
   server.registerTool(
