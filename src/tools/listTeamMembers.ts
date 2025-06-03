@@ -23,7 +23,16 @@ const annotations: ToolAnnotations = {
 
 const callback: ToolCallback<typeof inputSchema> = async () => {
   const { ok, value } = await listCoauthors();
-  return { isError: !ok, content: [{ type: "text", text: value || "" }] };
+
+  if (!ok) {
+    return { isError: true, content: [{ type: "text", text: value }] };
+  }
+
+  const lines = value.split("\n").filter((line) => line.trim() !== "");
+  return {
+    isError: false,
+    content: lines.map((line) => ({ type: "text", text: line })),
+  };
 };
 
 const tool: GitMobTool<typeof inputSchema, Record<string, never>> = {

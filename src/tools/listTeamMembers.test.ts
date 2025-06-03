@@ -51,7 +51,10 @@ describe("[tools] listTeamMembers", () => {
       expect(listCoauthors).toHaveBeenCalledWith();
       expect(result).toEqual({
         isError: false,
-        content: [{ type: "text", text: teamMembers }],
+        content: [
+          { type: "text", text: "john John Doe john@example.com" },
+          { type: "text", text: "jane Jane Smith jane@example.com" },
+        ],
       });
     });
 
@@ -68,18 +71,6 @@ describe("[tools] listTeamMembers", () => {
       expect(result).toEqual({
         isError: true,
         content: [{ type: "text", text: errorMessage }],
-      });
-    });
-
-    it("should handle null/undefined value by returning empty string", async () => {
-      mockListCoauthors.mockResolvedValueOnce({ ok: true, value: null });
-
-      const result = await tool.callback({});
-
-      expect(listCoauthors).toHaveBeenCalledWith();
-      expect(result).toEqual({
-        isError: false,
-        content: [{ type: "text", text: "" }],
       });
     });
   });

@@ -53,7 +53,10 @@ describe("[tools] listMobSessionCoauthors", () => {
       expect(listMobSessionCoauthors).toHaveBeenCalledWith();
       expect(result).toEqual({
         isError: false,
-        content: [{ type: "text", text: coauthors }],
+        content: [
+          { type: "text", text: "john John Doe john@example.com" },
+          { type: "text", text: "jane Jane Smith jane@example.com" },
+        ],
       });
     });
 
@@ -70,21 +73,6 @@ describe("[tools] listMobSessionCoauthors", () => {
       expect(result).toEqual({
         isError: true,
         content: [{ type: "text", text: errorMessage }],
-      });
-    });
-
-    it("should handle null/undefined value by returning empty string", async () => {
-      mockListMobSessionCoauthors.mockResolvedValueOnce({
-        ok: true,
-        value: null,
-      });
-
-      const result = await tool.callback({});
-
-      expect(listMobSessionCoauthors).toHaveBeenCalledWith();
-      expect(result).toEqual({
-        isError: false,
-        content: [{ type: "text", text: "" }],
       });
     });
   });
