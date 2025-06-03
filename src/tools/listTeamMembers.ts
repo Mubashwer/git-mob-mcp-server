@@ -1,7 +1,7 @@
 import { listCoauthors } from "../clients/gitMobClient.js";
 import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 import type { ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
-import type { GitMobTool } from "../types/GitMobTool.js";
+import type { GitMobTool } from "../types/index.js";
 
 const name = "list_team_members";
 

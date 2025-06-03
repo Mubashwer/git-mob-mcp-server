@@ -1,5 +1,5 @@
 import type { ZodRawShape } from "zod";
-import type { GitMobTool } from "../types/GitMobTool";
+import type { GitMobTool } from "../types/index.js";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp";
 
 export const registerGitMobTool = <

@@ -1,6 +1,6 @@
 import { describe, it, expect, jest } from "@jest/globals";
 import { registerGitMobResource } from "./registerGitMobResource.js";
-import type { GitMobResource } from "../types/GitMobResource.js";
+import type { GitMobResource } from "../types/index.js";
 import type {
   McpServer,
   ReadResourceCallback,

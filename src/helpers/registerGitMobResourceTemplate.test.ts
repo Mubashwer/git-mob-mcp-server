@@ -1,6 +1,6 @@
 import { describe, it, expect, jest } from "@jest/globals";
 import { registerGitMobResourceTemplate } from "./registerGitMobResourceTemplate.js";
-import type { GitMobResourceTemplate } from "../types/GitMobResourceTemplate.js";
+import type { GitMobResourceTemplate } from "../types/index.js";
 import type {
   McpServer,
   ReadResourceTemplateCallback,

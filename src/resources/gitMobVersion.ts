@@ -3,7 +3,7 @@ import {
   type ResourceMetadata,
 } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { getVersion } from "../clients/gitMobClient.js";
-import type { GitMobResource } from "../types/GitMobResource.js";
+import type { GitMobResource } from "../types/index.js";
 
 const name = "git_mob_version";
 

@@ -5,7 +5,7 @@ import {
 } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { getHelp } from "../clients/gitMobClient.js";
 import { UriTemplate } from "@modelcontextprotocol/sdk/shared/uriTemplate.js";
-import type { GitMobResourceTemplate } from "../types/GitMobResourceTemplate.js";
+import type { GitMobResourceTemplate } from "../types/index.js";
 
 const name = "git_mob_help";
 

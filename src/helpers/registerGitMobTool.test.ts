@@ -6,7 +6,7 @@ import type {
   McpServer,
   ToolCallback,
 } from "@modelcontextprotocol/sdk/server/mcp.js";
-import type { GitMobTool } from "../types/GitMobTool.js";
+import type { GitMobTool } from "../types/index.js";
 
 describe("[helpers] registerGitMobTool", () => {
   it("should register given git mob tool with the given server", () => {

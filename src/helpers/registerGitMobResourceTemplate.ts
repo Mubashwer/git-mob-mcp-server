@@ -1,4 +1,4 @@
-import type { GitMobResourceTemplate } from "../types/GitMobResourceTemplate";
+import type { GitMobResourceTemplate } from "../types/index.js";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp";
 
 export const registerGitMobResourceTemplate = (
