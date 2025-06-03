@@ -1,4 +1,4 @@
-import { z, type ZodRawShape } from "zod";
+import { z } from "zod";
 import tool from "./setMobSessionCoauthors.js";
 import { describe, it, expect } from "@jest/globals";
 import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
@@ -24,7 +24,7 @@ describe("[tools] setMobSessionCoauthors", () => {
   });
 
   it("should have correct input schema", () => {
-    const inputSchema: ZodRawShape = {
+    const inputSchema = {
       coauthorKeys: z.array(z.string()).min(1),
     };
     expect(JSON.stringify(tool.inputSchema)).toEqual(

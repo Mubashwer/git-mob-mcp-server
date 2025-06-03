@@ -1,6 +1,6 @@
 import { describe, it, expect, jest } from "@jest/globals";
 import { registerGitMobTool } from "./registerGitMobTool.js";
-import { z, type ZodRawShape } from "zod";
+import { z } from "zod";
 import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 import type {
   McpServer,
@@ -16,7 +16,7 @@ describe("[helpers] registerGitMobTool", () => {
 
     const name = "test_tool";
     const description = "This is a tool for testing purposes.";
-    const inputSchema: ZodRawShape = {
+    const inputSchema = {
       foo: z.string(),
       bar: z.string(),
     };

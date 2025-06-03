@@ -1,4 +1,4 @@
-import { z, type ZodRawShape } from "zod";
+import { z } from "zod";
 import { getHelp } from "../clients/gitMobClient.js";
 import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 import type { ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -11,7 +11,7 @@ const description =
   "You can optionally provide a command ('setup', 'coauthor', or 'help') " +
   "to get detailed help for that specific command.";
 
-const inputSchema: ZodRawShape = {
+const inputSchema = {
   command: z.enum(["setup", "coauthor", "help"]).optional(),
 };
 

@@ -1,4 +1,4 @@
-import { z, type ZodRawShape } from "zod";
+import { z } from "zod";
 import { addCoauthor } from "../clients/gitMobClient.js";
 import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 import type { ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -12,7 +12,7 @@ const description =
   "The first name is a good choice for the key." +
   "Ask the user if they want mob or pair with this team member.";
 
-const inputSchema: ZodRawShape = {
+const inputSchema = {
   key: z.string(),
   name: z.string(),
   email: z.string(),
