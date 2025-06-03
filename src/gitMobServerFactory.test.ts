@@ -10,7 +10,6 @@ jest.mock("./helpers/index.js", () => ({
   registerGitMobTool: jest.fn(),
   registerGitMobResource: jest.fn(),
   registerGitMobResourceTemplate: jest.fn(),
-  registerGtMobResourceAsTool: jest.fn(),
 }));
 jest.mock("@modelcontextprotocol/sdk/server/mcp.js", () => {
   const actual = jest.requireActual("@modelcontextprotocol/sdk/server/mcp.js");
@@ -57,41 +56,6 @@ describe("gitMobServerFactory: createGitMobServer", () => {
       server,
       resources.gitMobVersion,
     );
-    expect(registerGitMobResource).toHaveBeenCalledWith(
-      server,
-      resources.teamMembers,
-    );
-    expect(registerGitMobResource).toHaveBeenCalledWith(
-      server,
-      resources.mobSessionCoauthors,
-    );
-    expect(registerGitMobResource).toHaveBeenCalledWith(
-      server,
-      resources.mobSessionCoauthorTrailers,
-    );
-  });
-
-  it("should register all resources as tools", async () => {
-    const { registerGtMobResourceAsTool } = helpers;
-
-    const server = createGitMobServer();
-
-    expect(registerGtMobResourceAsTool).toHaveBeenCalledWith(
-      server,
-      resources.gitMobVersion,
-    );
-    expect(registerGtMobResourceAsTool).toHaveBeenCalledWith(
-      server,
-      resources.teamMembers,
-    );
-    expect(registerGtMobResourceAsTool).toHaveBeenCalledWith(
-      server,
-      resources.mobSessionCoauthors,
-    );
-    expect(registerGtMobResourceAsTool).toHaveBeenCalledWith(
-      server,
-      resources.mobSessionCoauthorTrailers,
-    );
   });
 
   it("should register all tools", async () => {
@@ -99,6 +63,10 @@ describe("gitMobServerFactory: createGitMobServer", () => {
 
     const server = createGitMobServer();
 
+    expect(registerGitMobTool).toHaveBeenCalledWith(
+      server,
+      tools.getGitMobHelp,
+    );
     expect(registerGitMobTool).toHaveBeenCalledWith(
       server,
       tools.setupGitMobGlobally,
@@ -117,6 +85,10 @@ describe("gitMobServerFactory: createGitMobServer", () => {
     );
     expect(registerGitMobTool).toHaveBeenCalledWith(
       server,
+      tools.listTeamMembers,
+    );
+    expect(registerGitMobTool).toHaveBeenCalledWith(
+      server,
       tools.setMobSessionCoauthors,
     );
     expect(registerGitMobTool).toHaveBeenCalledWith(
@@ -125,7 +97,11 @@ describe("gitMobServerFactory: createGitMobServer", () => {
     );
     expect(registerGitMobTool).toHaveBeenCalledWith(
       server,
-      tools.getGitMobHelp,
+      tools.listMobSessionCoauthors,
+    );
+    expect(registerGitMobTool).toHaveBeenCalledWith(
+      server,
+      tools.listMobSessionCoauthorTrailers,
     );
   });
 });

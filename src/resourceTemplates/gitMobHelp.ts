@@ -21,7 +21,7 @@ const template = new ResourceTemplate(
 
 const metadata: ResourceMetadata = {
   description:
-    "Displays general help and usage information for the Git Mob CLI. " +
+    "General help and usage information for the Git Mob CLI. " +
     "You can optionally provide a command ('setup', 'coauthor', or 'help') " +
     "to get detailed help for that specific command.",
   mimeType: "text/plain",
