@@ -1,9 +1,9 @@
 # Git Mob MCP Server
 
-![NPM Version](https://img.shields.io/npm/v/git-mob-mcp-server)
-![CI Release](https://github.com/Mubashwer/git-mob-mcp-server/actions/workflows/ci-release.yml/badge.svg)
+[![NPM Version](https://img.shields.io/npm/v/git-mob-mcp-server)](https://www.npmjs.com/package/git-mob-mcp-server)
+[![CI Release](https://github.com/Mubashwer/git-mob-mcp-server/actions/workflows/ci-release.yml/badge.svg)](https://github.com/Mubashwer/git-mob-mcp-server/actions/workflows/ci-release.yml)
 [![codecov](https://codecov.io/gh/Mubashwer/git-mob-mcp-server/graph/badge.svg?token=21GJOEYQGG)](https://codecov.io/gh/Mubashwer/git-mob-mcp-server)
-![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Mubashwer/git-mob-mcp-server/blob/main/LICENSE)
 
 Node.js server implementing Model Context Protocol (MCP) for [`git mob` CLI app](https://github.com/Mubashwer/git-mob)
 
@@ -34,7 +34,7 @@ Built using [@modelcontextprotocol/sdk](https://github.com/modelcontextprotocol/
 - `set_mob_session_coauthors`: Sets the active pairing or mob session by specifying the keys of the team members to include as coauthors.
 - `clear_mob_session`: Clears the active mob or pairing session.
 - `list_mob_session_coauthors`: Lists all coauthors currently included in the active mob or pairing session.
-- `list_mob_session_coauthors` (trailers): Lists the git Co-authored-by trailers for the coauthors currently included in the active mob or pairing session.
+- `list_mob_session_coauthor_trailers`: Lists the git Co-authored-by trailers for the coauthors currently included in the active mob or pairing session.
 
 ## Usage with Claude Desktop
 
