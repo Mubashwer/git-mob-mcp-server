@@ -1,1 +1,1 @@
-export { default as gitMobHelp } from "./gitMobHelp.js";
+export { default as gitMobCliHelp } from "./gitMobCliHelp.js";

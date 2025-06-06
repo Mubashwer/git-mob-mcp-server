@@ -1,4 +1,4 @@
-import resource from "./gitMobHelp.js";
+import resource from "./gitMobCliHelp.js";
 import { describe, it, expect } from "@jest/globals";
 import { type ResourceMetadata } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { getHelp } from "../clients/gitMobClient.js";
@@ -9,9 +9,9 @@ jest.mock("../clients/gitMobClient.js", () => ({
 }));
 const mockGetHelp = getHelp as jest.Mock;
 
-describe("[resourceTemplates] gitMobHelp", () => {
+describe("[resourceTemplates] gitMobCliHelp", () => {
   it("should have correct name", () => {
-    expect(resource.name).toBe("git_mob_help");
+    expect(resource.name).toBe("git_mob_cli_help");
   });
 
   it("should have correct template", () => {

@@ -7,7 +7,7 @@ import { getHelp } from "../clients/gitMobClient.js";
 import { UriTemplate } from "@modelcontextprotocol/sdk/shared/uriTemplate.js";
 import type { GitMobResourceTemplate } from "../types/index.js";
 
-const name = "git_mob_help";
+const name = "git_mob_cli_help";
 
 const template = new ResourceTemplate(
   new UriTemplate("gitmob://help{?command}"),

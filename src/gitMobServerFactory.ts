@@ -23,11 +23,11 @@ export const createGitMobServer = () => {
     },
   );
 
-  registerGitMobResourceTemplate(server, resourceTemplates.gitMobHelp);
+  registerGitMobResourceTemplate(server, resourceTemplates.gitMobCliHelp);
 
-  registerGitMobResource(server, resources.gitMobVersion);
+  registerGitMobResource(server, resources.gitMobCliVersion);
 
-  registerGitMobTool(server, tools.getGitMobHelp);
+  registerGitMobTool(server, tools.getGitMobCliHelp);
   registerGitMobTool(server, tools.setupGitMobGlobally);
   registerGitMobTool(server, tools.setupGitMobLocally);
   registerGitMobTool(server, tools.addTeamMember);

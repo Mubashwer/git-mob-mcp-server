@@ -4,7 +4,7 @@ import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 import type { ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { GitMobTool } from "../types/index.js";
 
-const name = "get_git_mob_help";
+const name = "git_mob_cli_help";
 
 const description =
   "Displays general help and usage information for the Git Mob CLI. " +

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import tool from "./getGitMobHelp.js";
+import tool from "./getGitMobCliHelp.js";
 import { describe, it, expect } from "@jest/globals";
 import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 import { getHelp } from "../clients/gitMobClient.js";
@@ -9,9 +9,9 @@ jest.mock("../clients/gitMobClient.js", () => ({
 }));
 const mockGetHelp = getHelp as jest.Mock;
 
-describe("[tools] getGitMobHelp", () => {
+describe("[tools] getGitMobCliHelp", () => {
   it("should have correct name", () => {
-    expect(tool.name).toBe("get_git_mob_help");
+    expect(tool.name).toBe("git_mob_cli_help");
   });
 
   it("should have correct description", () => {

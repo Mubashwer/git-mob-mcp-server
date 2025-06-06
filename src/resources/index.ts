@@ -1,1 +1,1 @@
-export { default as gitMobVersion } from "./gitMobVersion.js";
+export { default as gitMobCliVersion } from "./gitMobCliVersion.js";

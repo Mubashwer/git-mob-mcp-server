@@ -43,7 +43,7 @@ describe("gitMobServerFactory: createGitMobServer", () => {
 
     expect(registerGitMobResourceTemplate).toHaveBeenCalledWith(
       server,
-      resourceTemplates.gitMobHelp,
+      resourceTemplates.gitMobCliHelp,
     );
   });
 
@@ -54,7 +54,7 @@ describe("gitMobServerFactory: createGitMobServer", () => {
 
     expect(registerGitMobResource).toHaveBeenCalledWith(
       server,
-      resources.gitMobVersion,
+      resources.gitMobCliVersion,
     );
   });
 
@@ -65,7 +65,7 @@ describe("gitMobServerFactory: createGitMobServer", () => {
 
     expect(registerGitMobTool).toHaveBeenCalledWith(
       server,
-      tools.getGitMobHelp,
+      tools.getGitMobCliHelp,
     );
     expect(registerGitMobTool).toHaveBeenCalledWith(
       server,

@@ -20,12 +20,12 @@ Built using [@modelcontextprotocol/sdk](https://github.com/modelcontextprotocol/
 
 ### Resources
 
-- `git_mob_help`: General help and usage information for the Git Mob CLI.
-- `git_mob_version`: The installed version of the Git Mob CLI.
+- `git_mob_cli_help`: General help and usage information for the Git Mob CLI.
+- `git_mob_cli_version`: The installed version of the Git Mob CLI.
 
 ### Tools
 
-- `git_mob_help`: Displays general help and usage information for the Git Mob CLI.
+- `git_mob_cli_help`: Displays general help and usage information for the Git Mob CLI.
 - `setup_git_mob_globally`: Sets up git-mob globally for the user.
 - `setup_git_mob_locally`: Sets up git-mob locally for the current repository.
 - `add_team_member`: Adds a new team member using their key, name, and email.

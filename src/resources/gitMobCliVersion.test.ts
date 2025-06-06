@@ -1,4 +1,4 @@
-import resource from "./gitMobVersion.js";
+import resource from "./gitMobCliVersion.js";
 import { describe, it, expect } from "@jest/globals";
 import { type ResourceMetadata } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { getVersion } from "../clients/gitMobClient.js";
@@ -8,9 +8,9 @@ jest.mock("../clients/gitMobClient.js", () => ({
 }));
 const mockGetVersion = getVersion as jest.Mock;
 
-describe("[resources] gitMobVersion", () => {
+describe("[resources] gitMobCliVersion", () => {
   it("should have correct name", () => {
-    expect(resource.name).toBe("git_mob_version");
+    expect(resource.name).toBe("git_mob_cli_version");
   });
 
   it("should have correct uri", () => {

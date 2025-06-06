@@ -5,7 +5,7 @@ import {
 import { getVersion } from "../clients/gitMobClient.js";
 import type { GitMobResource } from "../types/index.js";
 
-const name = "git_mob_version";
+const name = "git_mob_cli_version";
 
 const uri = "gitmob://version";
 
