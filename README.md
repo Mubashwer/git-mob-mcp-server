@@ -38,7 +38,7 @@ Built using [@modelcontextprotocol/sdk](https://github.com/modelcontextprotocol/
 
 ### Tools
 
-- `git_mob_cli_help`: Displays general help and usage information for the Git Mob CLI.
+- `get_git_mob_cli_help`: Displays general help and usage information for the Git Mob CLI.
 - `setup_git_mob_globally`: Sets up git-mob globally for the user.
 - `setup_git_mob_locally`: Sets up git-mob locally for the current repository when it overrides `core.hooksPath` git configuration variable (e.g when using husky).
 - `add_team_member`: Adds a new team member using their key, name, and email.

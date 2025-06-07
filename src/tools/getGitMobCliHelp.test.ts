@@ -11,7 +11,7 @@ const mockGetHelp = getHelp as jest.Mock;
 
 describe("[tools] getGitMobCliHelp", () => {
   it("should have correct name", () => {
-    expect(tool.name).toBe("git_mob_cli_help");
+    expect(tool.name).toBe("get_git_mob_cli_help");
   });
 
   it("should have correct description", () => {
