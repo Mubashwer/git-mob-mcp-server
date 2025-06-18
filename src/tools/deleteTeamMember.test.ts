@@ -2,12 +2,12 @@ import { z } from "zod";
 import tool from "./deleteTeamMember.js";
 import { describe, it, expect } from "@jest/globals";
 import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
-import { deleteCoauthor } from "../clients/gitMobClient.js";
+import { deleteTeamMember } from "../clients/gitMobClient.js";
 
 jest.mock("../clients/gitMobClient.js", () => ({
-  deleteCoauthor: jest.fn(),
+  deleteTeamMember: jest.fn(),
 }));
-const mockDeleteCoauthor = deleteCoauthor as jest.Mock;
+const mockDeleteTeamMember = deleteTeamMember as jest.Mock;
 
 describe("[tools] deleteTeamMember", () => {
   it("should have correct name", () => {
@@ -44,11 +44,11 @@ describe("[tools] deleteTeamMember", () => {
 
   describe("tool callback", () => {
     it("should successfully delete team member and return success response", async () => {
-      mockDeleteCoauthor.mockResolvedValueOnce({ ok: true, value: "" });
+      mockDeleteTeamMember.mockResolvedValueOnce({ ok: true, value: "" });
 
       const result = await tool.callback({ key: "leo" });
 
-      expect(deleteCoauthor).toHaveBeenCalledWith("leo");
+      expect(deleteTeamMember).toHaveBeenCalledWith("leo");
       expect(result).toEqual({
         isError: false,
         content: [{ type: "text", text: "" }],
@@ -57,14 +57,14 @@ describe("[tools] deleteTeamMember", () => {
 
     it("should return error response when team member deletion fails", async () => {
       const errorMessage = `Error: "No co-author found with key: joe"`;
-      mockDeleteCoauthor.mockResolvedValueOnce({
+      mockDeleteTeamMember.mockResolvedValueOnce({
         ok: false,
         value: errorMessage,
       });
 
       const result = await tool.callback({ key: "joe" });
 
-      expect(deleteCoauthor).toHaveBeenCalledWith("joe");
+      expect(deleteTeamMember).toHaveBeenCalledWith("joe");
       expect(result).toEqual({
         isError: true,
         content: [{ type: "text", text: errorMessage }],

@@ -2,7 +2,8 @@ import { runCliCommand, type CommandResult } from "../helpers/index.js";
 
 const GIT_MOB_CLI = "git-mob";
 
-export async function setupGlobal(): Promise<CommandResult> {
+export async function setup(): Promise<CommandResult> {
+  // specifying --global for backward compatibility
   return runCliCommand(GIT_MOB_CLI, ["setup", "--global"]);
 }
 
@@ -10,23 +11,26 @@ export async function setupLocal(): Promise<CommandResult> {
   return runCliCommand(GIT_MOB_CLI, ["setup", "--local"]);
 }
 
-export async function addCoauthor(
+export async function addTeamMember(
   key: string,
   name: string,
   email: string,
 ): Promise<CommandResult> {
+  // using coauthor instead of team-member for backward compatibility
   return runCliCommand(GIT_MOB_CLI, ["coauthor", "--add", key, name, email]);
 }
 
-export async function deleteCoauthor(key: string): Promise<CommandResult> {
+export async function deleteTeamMember(key: string): Promise<CommandResult> {
+  // using coauthor instead of team-member for backward compatibility
   return runCliCommand(GIT_MOB_CLI, ["coauthor", "--delete", key]);
 }
 
-export async function listCoauthors(): Promise<CommandResult> {
+export async function listTeamMembers(): Promise<CommandResult> {
+  // using coauthor instead of team-member for backward compatibility
   return runCliCommand(GIT_MOB_CLI, ["coauthor", "--list"]);
 }
 
-export async function setMobSession(
+export async function setMobSessionCoauthors(
   coauthorKeys: string[],
 ): Promise<CommandResult> {
   return runCliCommand(GIT_MOB_CLI, ["--with", ...coauthorKeys]);

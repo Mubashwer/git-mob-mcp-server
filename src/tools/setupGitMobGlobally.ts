@@ -1,4 +1,4 @@
-import { setupGlobal } from "../clients/gitMobClient.js";
+import { setup } from "../clients/gitMobClient.js";
 import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 import type { ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { GitMobTool } from "../types/index.js";
@@ -23,7 +23,7 @@ const annotations: ToolAnnotations = {
 };
 
 const callback: ToolCallback<typeof inputSchema> = async () => {
-  const { ok, value } = await setupGlobal();
+  const { ok, value } = await setup();
   return { isError: !ok, content: [{ type: "text", text: value }] };
 };
 

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { addCoauthor } from "../clients/gitMobClient.js";
+import { addTeamMember } from "../clients/gitMobClient.js";
 import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 import type { ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { GitMobTool } from "../types/index.js";
@@ -31,7 +31,7 @@ const callback: ToolCallback<typeof inputSchema> = async ({
   name,
   email,
 }) => {
-  const { ok, value } = await addCoauthor(key, name, email);
+  const { ok, value } = await addTeamMember(key, name, email);
   return { isError: !ok, content: [{ type: "text", text: value }] };
 };
 

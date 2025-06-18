@@ -1,4 +1,4 @@
-import { listCoauthors } from "../clients/gitMobClient.js";
+import { listTeamMembers } from "../clients/gitMobClient.js";
 import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 import type { ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { GitMobTool } from "../types/index.js";
@@ -22,7 +22,7 @@ const annotations: ToolAnnotations = {
 };
 
 const callback: ToolCallback<typeof inputSchema> = async () => {
-  const { ok, value } = await listCoauthors();
+  const { ok, value } = await listTeamMembers();
 
   if (!ok) {
     return { isError: true, content: [{ type: "text", text: value }] };

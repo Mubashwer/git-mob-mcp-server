@@ -2,12 +2,12 @@ import { z } from "zod";
 import tool from "./setMobSessionCoauthors.js";
 import { describe, it, expect } from "@jest/globals";
 import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
-import { setMobSession } from "../clients/gitMobClient.js";
+import { setMobSessionCoauthors } from "../clients/gitMobClient.js";
 
 jest.mock("../clients/gitMobClient.js", () => ({
-  setMobSession: jest.fn(),
+  setMobSessionCoauthors: jest.fn(),
 }));
-const mockSetMobSession = setMobSession as jest.Mock;
+const mockSetMobSessionCoauthors = setMobSessionCoauthors as jest.Mock;
 
 describe("[tools] setMobSessionCoauthors", () => {
   it("should have correct name", () => {
@@ -47,14 +47,14 @@ describe("[tools] setMobSessionCoauthors", () => {
     it("should successfully set mob session coauthors and return success response", async () => {
       const coauthorKeys = ["leo", "eric"];
       const successMessage = "Leo <leo@example.com>\nEric <eric@example.com>";
-      mockSetMobSession.mockResolvedValueOnce({
+      mockSetMobSessionCoauthors.mockResolvedValueOnce({
         ok: true,
         value: successMessage,
       });
 
       const result = await tool.callback({ coauthorKeys });
 
-      expect(setMobSession).toHaveBeenCalledWith(coauthorKeys);
+      expect(setMobSessionCoauthors).toHaveBeenCalledWith(coauthorKeys);
       expect(result).toEqual({
         isError: false,
         content: [{ type: "text", text: successMessage }],
@@ -64,14 +64,14 @@ describe("[tools] setMobSessionCoauthors", () => {
     it("should return error response when setting mob session fails", async () => {
       const coauthorKeys = ["joe"];
       const errorMessage = `Error: "No co-author found with key: joe"`;
-      mockSetMobSession.mockResolvedValueOnce({
+      mockSetMobSessionCoauthors.mockResolvedValueOnce({
         ok: false,
         value: errorMessage,
       });
 
       const result = await tool.callback({ coauthorKeys });
 
-      expect(setMobSession).toHaveBeenCalledWith(coauthorKeys);
+      expect(setMobSessionCoauthors).toHaveBeenCalledWith(coauthorKeys);
       expect(result).toEqual({
         isError: true,
         content: [{ type: "text", text: errorMessage }],

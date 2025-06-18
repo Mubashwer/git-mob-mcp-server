@@ -1,12 +1,12 @@
 import tool from "./listTeamMembers.js";
 import { describe, it, expect } from "@jest/globals";
 import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
-import { listCoauthors } from "../clients/gitMobClient.js";
+import { listTeamMembers } from "../clients/gitMobClient.js";
 
 jest.mock("../clients/gitMobClient.js", () => ({
-  listCoauthors: jest.fn(),
+  listTeamMembers: jest.fn(),
 }));
-const mockListCoauthors = listCoauthors as jest.Mock;
+const mockListTeamMembers = listTeamMembers as jest.Mock;
 
 describe("[tools] listTeamMembers", () => {
   it("should have correct name", () => {
@@ -44,11 +44,14 @@ describe("[tools] listTeamMembers", () => {
     it("should successfully list team members and return success response", async () => {
       const teamMembers =
         "john John Doe john@example.com\njane Jane Smith jane@example.com";
-      mockListCoauthors.mockResolvedValueOnce({ ok: true, value: teamMembers });
+      mockListTeamMembers.mockResolvedValueOnce({
+        ok: true,
+        value: teamMembers,
+      });
 
       const result = await tool.callback({});
 
-      expect(listCoauthors).toHaveBeenCalledWith();
+      expect(listTeamMembers).toHaveBeenCalledWith();
       expect(result).toEqual({
         isError: false,
         content: [
@@ -60,14 +63,14 @@ describe("[tools] listTeamMembers", () => {
 
     it("should return error response when listing team members fails", async () => {
       const errorMessage = `Error: "Failed to list team members"`;
-      mockListCoauthors.mockResolvedValueOnce({
+      mockListTeamMembers.mockResolvedValueOnce({
         ok: false,
         value: errorMessage,
       });
 
       const result = await tool.callback({});
 
-      expect(listCoauthors).toHaveBeenCalledWith();
+      expect(listTeamMembers).toHaveBeenCalledWith();
       expect(result).toEqual({
         isError: true,
         content: [{ type: "text", text: errorMessage }],

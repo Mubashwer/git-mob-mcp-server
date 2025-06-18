@@ -13,10 +13,10 @@ describe("[clients] gitMobClient", () => {
     jest.resetAllMocks();
   });
 
-  test("setupGlobal", async () => {
+  test("setup", async () => {
     mockRunCmd.mockResolvedValue({ ok: true, value: "Setup complete" });
 
-    const result = await gitMobClient.setupGlobal();
+    const result = await gitMobClient.setup();
 
     expect(runCliCommand).toHaveBeenCalledWith("git-mob", [
       "setup",
@@ -34,13 +34,13 @@ describe("[clients] gitMobClient", () => {
     expect(result).toEqual({ ok: true, value: "Setup complete" });
   });
 
-  test("addCoauthor", async () => {
+  test("addTeamMember", async () => {
     mockRunCmd.mockResolvedValue({
       ok: true,
       value: "Alice Bob <alice@example.com>",
     });
 
-    const result = await gitMobClient.addCoauthor(
+    const result = await gitMobClient.addTeamMember(
       "ab",
       "Alice Bob",
       "alice@example.com",
@@ -58,10 +58,10 @@ describe("[clients] gitMobClient", () => {
     });
   });
 
-  test("deleteCoauthor", async () => {
+  test("deleteTeamMember", async () => {
     mockRunCmd.mockResolvedValue({ ok: true, value: "" });
 
-    const result = await gitMobClient.deleteCoauthor("ab");
+    const result = await gitMobClient.deleteTeamMember("ab");
 
     expect(runCliCommand).toHaveBeenCalledWith("git-mob", [
       "coauthor",
@@ -71,12 +71,12 @@ describe("[clients] gitMobClient", () => {
     expect(result).toEqual({ ok: true, value: "" });
   });
 
-  test("listCoauthors", async () => {
+  test("listTeamMembers", async () => {
     const coauthorList =
       "leo Leo Messi <leo.messi@arg.com>\nab Alice Bob <alice@example.com>";
     mockRunCmd.mockResolvedValue({ ok: true, value: coauthorList });
 
-    const result = await gitMobClient.listCoauthors();
+    const result = await gitMobClient.listTeamMembers();
 
     expect(runCliCommand).toHaveBeenCalledWith("git-mob", [
       "coauthor",
@@ -85,12 +85,12 @@ describe("[clients] gitMobClient", () => {
     expect(result).toEqual({ ok: true, value: coauthorList });
   });
 
-  test("setMobSession", async () => {
+  test("setMobSessionCoauthors", async () => {
     const session =
       "leo Leo Messi <leo.messi@arg.com>\nab Alice Bob <alice@example.com>";
     mockRunCmd.mockResolvedValue({ ok: true, value: session });
 
-    const result = await gitMobClient.setMobSession(["ab", "cd"]);
+    const result = await gitMobClient.setMobSessionCoauthors(["ab", "cd"]);
 
     expect(runCliCommand).toHaveBeenCalledWith("git-mob", [
       "--with",

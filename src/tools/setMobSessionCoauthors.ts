@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { setMobSession } from "../clients/gitMobClient.js";
+import { setMobSessionCoauthors } from "../clients/gitMobClient.js";
 import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 import type { ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { GitMobTool } from "../types/index.js";
@@ -25,7 +25,7 @@ const annotations: ToolAnnotations = {
 };
 
 const callback: ToolCallback<typeof inputSchema> = async ({ coauthorKeys }) => {
-  const { ok, value } = await setMobSession(coauthorKeys);
+  const { ok, value } = await setMobSessionCoauthors(coauthorKeys);
   return { isError: !ok, content: [{ type: "text", text: value }] };
 };
 

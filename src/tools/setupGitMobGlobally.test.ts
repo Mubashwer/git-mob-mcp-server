@@ -1,12 +1,12 @@
 import tool from "./setupGitMobGlobally.js";
 import { describe, it, expect } from "@jest/globals";
 import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
-import { setupGlobal } from "../clients/gitMobClient.js";
+import { setup } from "../clients/gitMobClient.js";
 
 jest.mock("../clients/gitMobClient.js", () => ({
-  setupGlobal: jest.fn(),
+  setup: jest.fn(),
 }));
-const mockSetupGlobal = setupGlobal as jest.Mock;
+const mockSetup = setup as jest.Mock;
 
 describe("[tools] setupGitMobGlobally", () => {
   it("should have correct name", () => {
@@ -44,14 +44,14 @@ describe("[tools] setupGitMobGlobally", () => {
   describe("tool callback", () => {
     it("should successfully setup Git Mob globally and return success response", async () => {
       const successMessage = "Git Mob setup locally completed";
-      mockSetupGlobal.mockResolvedValueOnce({
+      mockSetup.mockResolvedValueOnce({
         ok: true,
         value: successMessage,
       });
 
       const result = await tool.callback({});
 
-      expect(setupGlobal).toHaveBeenCalledWith();
+      expect(setup).toHaveBeenCalledWith();
       expect(result).toEqual({
         isError: false,
         content: [{ type: "text", text: successMessage }],
@@ -60,14 +60,14 @@ describe("[tools] setupGitMobGlobally", () => {
 
     it("should return error response when global setup fails", async () => {
       const errorMessage = `Error: "Failed to setup Git Mob globally"`;
-      mockSetupGlobal.mockResolvedValueOnce({
+      mockSetup.mockResolvedValueOnce({
         ok: false,
         value: errorMessage,
       });
 
       const result = await tool.callback({});
 
-      expect(setupGlobal).toHaveBeenCalledWith();
+      expect(setup).toHaveBeenCalledWith();
       expect(result).toEqual({
         isError: true,
         content: [{ type: "text", text: errorMessage }],
