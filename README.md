@@ -17,7 +17,7 @@ Built using [@modelcontextprotocol/sdk](https://github.com/modelcontextprotocol/
 
 ## Features
 
-- Setup git mob CLI globally or locally
+- Setup git mob CLI
 - Add / delete / list team members
 - Choose team members for pairing / mobbing session
 - Automatic appending of Co-authored-by in for co-authors in commit messages during pairing / mobbing session
