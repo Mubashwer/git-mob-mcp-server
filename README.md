@@ -1,6 +1,7 @@
 # Git Mob MCP Server
 
 [![NPM Version](https://img.shields.io/npm/v/git-mob-mcp-server)](https://www.npmjs.com/package/git-mob-mcp-server)
+[![NPM Downloads](https://img.shields.io/npm/dt/git-mob-mcp-server)](https://www.npmjs.com/package/git-mob-mcp-server)
 [![CI Release](https://github.com/Mubashwer/git-mob-mcp-server/actions/workflows/ci-release.yml/badge.svg)](https://github.com/Mubashwer/git-mob-mcp-server/actions/workflows/ci-release.yml)
 [![codecov](https://codecov.io/gh/Mubashwer/git-mob-mcp-server/graph/badge.svg?token=21GJOEYQGG)](https://codecov.io/gh/Mubashwer/git-mob-mcp-server)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Mubashwer/git-mob-mcp-server/blob/main/LICENSE)
