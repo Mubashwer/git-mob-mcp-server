@@ -28,7 +28,7 @@ export const createGitMobServer = () => {
   registerGitMobResource(server, resources.gitMobCliVersion);
 
   registerGitMobTool(server, tools.getGitMobCliHelp);
-  registerGitMobTool(server, tools.setupGitMobGlobally);
+  registerGitMobTool(server, tools.setupGitMob);
   registerGitMobTool(server, tools.setupGitMobLocally);
   registerGitMobTool(server, tools.addTeamMember);
   registerGitMobTool(server, tools.deleteTeamMember);

@@ -7,10 +7,10 @@ const name = "setup_git_mob_locally";
 const description =
   "Sets up the Git Mob CLI for the current repository by installing a local " +
   "prepare-commit-msg git hook. This hook delegates to the global " +
-  "prepare-commit-msg hook configured by setupGitMobGlobally. Use this tool " +
+  "prepare-commit-msg hook configured by setupGitMob tool. Use this tool " +
   "only if your repository overrides the core.hooksPath git " +
   "configuration (e.g., when using Husky). Note: You must run " +
-  "setupGitMobGlobally at least once before using this tool.";
+  "setupGitMob tool at least once before using this tool.";
 
 const inputSchema = {};
 

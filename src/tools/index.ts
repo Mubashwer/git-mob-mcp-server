@@ -1,5 +1,5 @@
 export { default as getGitMobCliHelp } from "./getGitMobCliHelp.js";
-export { default as setupGitMobGlobally } from "./setupGitMobGlobally.js";
+export { default as setupGitMob } from "./setupGitMob.js";
 export { default as setupGitMobLocally } from "./setupGitMobLocally.js";
 export { default as addTeamMember } from "./addTeamMember.js";
 export { default as deleteTeamMember } from "./deleteTeamMember.js";

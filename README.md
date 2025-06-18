@@ -7,8 +7,8 @@
 
 Node.js server implementing Model Context Protocol (MCP) for [`git mob` CLI app](https://github.com/Mubashwer/git-mob)
 
-*You can attribute a git commit to more than one author by adding one or more Co-authored-by trailers to the commit's message. Co-authored commits are visible on GitHub.
-For more information, see [here](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors).*
+_You can attribute a git commit to more than one author by adding one or more Co-authored-by trailers to the commit's message. Co-authored commits are visible on GitHub.
+For more information, see [here](https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors)._
 
 This MCP Server will help you add them automatically and also help you store and manage co-authors for pair/mob programming sessions.
 
@@ -38,8 +38,7 @@ Built using [@modelcontextprotocol/sdk](https://github.com/modelcontextprotocol/
 
 ### Tools
 
-- `get_git_mob_cli_help`: Displays general help and usage information for the Git Mob CLI.
-- `setup_git_mob_globally`: Sets up git-mob globally for the user.
+- `setup_git_mob`: Sets up git-mob globally for the user.
 - `setup_git_mob_locally`: Sets up git-mob locally for the current repository when it overrides `core.hooksPath` git configuration variable (e.g when using husky).
 - `add_team_member`: Adds a new team member using their key, name, and email.
 - `delete_team_member`: Deletes a team member by their key.
@@ -48,6 +47,7 @@ Built using [@modelcontextprotocol/sdk](https://github.com/modelcontextprotocol/
 - `clear_mob_session`: Clears the active mob or pairing session.
 - `list_mob_session_coauthors`: Lists all coauthors currently included in the active mob or pairing session.
 - `list_mob_session_coauthor_trailers`: Lists the git Co-authored-by trailers for the coauthors currently included in the active mob or pairing session.
+- `get_git_mob_cli_help`: Displays general help and usage information for the Git Mob CLI.
 
 ## Usage with Claude Desktop
 
@@ -91,7 +91,7 @@ Optionally, you can add it to a file called `.vscode/mcp.json` in your workspace
 
 ## Setup
 
-Run the `setup_git_mob_globally` MCP tool once to configure git-mob globally for all repositories
+Run the `setup_git_mob` MCP tool once to setup git-mob before using other tools
 
 ## Local Development
 

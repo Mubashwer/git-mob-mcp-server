@@ -3,19 +3,20 @@ import type { ToolAnnotations } from "@modelcontextprotocol/sdk/types.js";
 import type { ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { GitMobTool } from "../types/index.js";
 
-const name = "setup_git_mob_globally";
+const name = "setup_git_mob";
 
 const description =
-  "Configures the Git Mob CLI globally for all repositories on your system. " +
-  "This one-time setup installs a global prepare-commit-msg git hook, which automatically " +
-  "appends Co-authored-by trailers to commit messages during mob or pairing sessions. " +
-  "If a repository overrides the core.hooksPath git configuration (e.g., when using " +
-  "Husky), the setupGitMobLocally tool needs to be invoked in addition to this. ";
+  "Configures the Git Mob CLI globally for all repositories on your system. This one-time " +
+  "setup installs a global prepare-commit-msg git hook, which automatically appends " +
+  "Co-authored-by trailers to commit messages during mob or pairing sessions. If a repository " +
+  "overrides the core.hooksPath git configuration (e.g., when using Husky), the " +
+  "setupGitMobLocally tool needs to be invoked in addition to this. " +
+  "If Git Mob isn't working as expected, ask the user if they have completed this initial setup.";
 
 const inputSchema = {};
 
 const annotations: ToolAnnotations = {
-  title: "Setup Git Mob Globally",
+  title: "Setup Git Mob",
   readOnlyHint: false,
   destructiveHint: true,
   idempotentHint: false,

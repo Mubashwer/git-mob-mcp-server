@@ -67,10 +67,7 @@ describe("gitMobServerFactory: createGitMobServer", () => {
       server,
       tools.getGitMobCliHelp,
     );
-    expect(registerGitMobTool).toHaveBeenCalledWith(
-      server,
-      tools.setupGitMobGlobally,
-    );
+    expect(registerGitMobTool).toHaveBeenCalledWith(server, tools.setupGitMob);
     expect(registerGitMobTool).toHaveBeenCalledWith(
       server,
       tools.setupGitMobLocally,
